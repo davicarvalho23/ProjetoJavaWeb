@@ -13,7 +13,7 @@
             </div>
             <div class="content"> 
             
-              <% 
+              <%//eThanos 
               String pag =request.getParameter("pag");
               int id =Integer.parseInt(pag); 
               
@@ -37,7 +37,7 @@
                   contagem=contagem/total + 1;    
               }
             %>
-        
+      
             <h1>Lista de Usuários</h1>
             <table>
             <tr><th>Id</th><th>Nome</th><th>Email</th><th>Senha</th><th>Acesso</th><th colspan="2">Ações</tr>
