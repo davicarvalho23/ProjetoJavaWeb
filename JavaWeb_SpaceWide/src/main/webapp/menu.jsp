@@ -80,10 +80,10 @@ li.dropdown {
 <ul>
   <li><a href="index.jsp">Principal</a></li>
   <li><a href="#news">Pedido</a></li>
-  <li><a href="#news">Relatório</a></li>
+  <li><a href='usuariosrelatorio.jsp'>Relatório</a></li>
 
 <li class='dropdown'><a href='javascript:void(0)' class='dropbtn'>Usuários</a>
-<div class='dropdown-content'><a href='#'>Link 1</a><a href='usuarioscontrolar.jsp?pag=1'>Controlar Usuários</a><a href='usuariocadastrarform.html'>Cadastrar Usuário</a></div></li>
+<div class='dropdown-content'><a href='usuarioscontrolar.jsp?pag=1'>Controlar Usuários</a><a href='usuariocadastrarform.html'>Cadastrar Usuário</a></div></li>
 
 </ul>
 

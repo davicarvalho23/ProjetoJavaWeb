@@ -4,5 +4,5 @@
     
 <%
     int i = usuariosDao.editarUsuario(u);
-    response.sendRedirect("usuarioscontrolar.jsp");
+    response.sendRedirect("usuarioscontrolar.jsp?pag=1");
 %>

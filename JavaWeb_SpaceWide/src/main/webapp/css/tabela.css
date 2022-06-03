@@ -5,18 +5,19 @@ table {
 }
 
 td, th {
+  background-color: 5131BA;
   border: 1px solid #ddd;
   padding: 8px;
 }
 
 tr:nth-child(even){background-color: #f2f2f2;}
 
-tr:hover {background-color: #ddd;}
+tr:hover {background-color: #0000a0;}
 
 th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #04AA6D;
+  background-color: 5131BA;
   color: white;
 }

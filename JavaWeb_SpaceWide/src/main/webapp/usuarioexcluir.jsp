@@ -4,5 +4,6 @@
     
 <%
     int i = usuariosDao.excluirUsuario(u);
-    response.sendRedirect("usuarioscontrolar.jsp");
+    
+    response.sendRedirect("usuarioscontrolar.jsp?pag=1");
 %>
