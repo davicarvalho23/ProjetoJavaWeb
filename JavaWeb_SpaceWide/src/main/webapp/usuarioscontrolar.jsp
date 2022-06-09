@@ -14,7 +14,7 @@
             <div class="content"> 
             
               <%//eThanos 
-              String pag =request.getParameter("pag");
+              String pag = request.getParameter("pag");
               int id =Integer.parseInt(pag); 
               
               //Quantidade de Registros da Página
