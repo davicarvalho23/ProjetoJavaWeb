@@ -1,6 +1,6 @@
 package classes;
 
-public class cliente {
+public class Cliente {
 private int id; 
 private String nome;
 private String apelido;

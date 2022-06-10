@@ -1,17 +1,6 @@
 package classes;
-/**
- * 
- * `id_obra_artistica` int(11) NOT NULL,
-  `id_artista` int(11) NOT NULL,
-  `titulo` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `subtitulo` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `descricao` varchar(275) COLLATE utf8_unicode_ci NOT NULL,
-  `localizacao_da_imagem` varchar(125) COLLATE utf8_unicode_ci NOT NULL,
-  `valor` decimal(6,2) NOT NULL,
-  `id_promocao` int(11) NOT NULL,
- *
- */
 
+  
 public class obra_artistica {
 private int id;
 private String titulo;
