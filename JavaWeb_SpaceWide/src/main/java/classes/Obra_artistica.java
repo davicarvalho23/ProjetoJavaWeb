@@ -1,7 +1,7 @@
 package classes;
 
   
-public class obra_artistica {
+public class Obra_artistica {
 private int id;
 private String titulo;
 private String subtitulo;

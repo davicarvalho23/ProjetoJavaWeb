@@ -147,7 +147,7 @@ public class clienteDao {
 	   }
 	    
 	    
-	   public static int cadastrarcliente(Cliente cliente){
+	   public static int cadastrarCliente(Cliente cliente){
 	       int status = 0;  
 	   try{
 	        Connection con = getConnection();

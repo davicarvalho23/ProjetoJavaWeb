@@ -1,9 +1,9 @@
 <%@ page import="dao.clienteDao"%>
-<jsp:useBean id="u" class="classes.Usuario"></jsp:useBean>
+<jsp:useBean id="u" class="classes.Cliente"></jsp:useBean>
 <jsp:setProperty property="*" name="u" />
     
 <%
-    int i = clienteDao.cadastrarUsuario(u);
+    int i = clienteDao.cadastrarCliente(u);
     
     if(i>0){
         response.sendRedirect("usuarioscontrolar.jsp");
