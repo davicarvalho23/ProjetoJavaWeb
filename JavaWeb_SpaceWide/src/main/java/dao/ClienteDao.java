@@ -10,7 +10,7 @@ import java.util.List;
 
 
 
-public class clienteDao {
+public class ClienteDao {
 	  public static Cliente getClienteById(int id){
 	        Cliente cliente = null;      
 	    try{
@@ -23,7 +23,7 @@ public class clienteDao {
 	            cliente.setId(rs.getInt("id"));
 	            cliente.setNome(rs.getString("nome"));
 	            cliente.setApelido(rs.getString("apelido"));
-	            cliente.setGenero(rs.getString("genero"));
+	            cliente.setEstado(rs.getString("estado"));
 	            cliente.setEmail(rs.getString("email"));         
 	            cliente.setSenha(rs.getString("senha"));   
 	            
@@ -39,7 +39,7 @@ public class clienteDao {
 	       int status = 0;  
 	   try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE cliente SET nome=?, apelido=?, genero=?, email=?  WHERE id_cliente=?");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE cliente SET nome=?, apelido=?, estado=?, email=?  WHERE id_cliente=?");
 	        ps.setString(1, cliente.getNome());
 	        ps.setString(2, cliente.getEmail());
 	        ps.setInt(4, cliente.getId());         
@@ -75,7 +75,7 @@ public class clienteDao {
 	    List<Cliente> list = new ArrayList<Cliente>();
 	    try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT * FROM clientes");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT * FROM cliente");
 	        ResultSet rs = ps.executeQuery();
 	        while(rs.next()){
 	            Cliente cliente = new Cliente();
@@ -94,7 +94,7 @@ public class clienteDao {
 	        int contagem = 0;
 	        try{
 	            Connection con = getConnection();
-	            PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT count(*) AS contagem FROM clientes");
+	            PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT count(*) AS contagem FROM cliente");
 	            ResultSet rs = ps.executeQuery();
 	            while(rs.next()){
 	                contagem = rs.getInt("contagem");
@@ -151,7 +151,7 @@ public class clienteDao {
 	       int status = 0;  
 	   try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO CLIENTE(NOME,APELIDO,GENERO,EMAIL,SENHA) VALUES(?,?,?,?)");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO CLIENTE(NOME,APELIDO,ESTADO,EMAIL,SENHA) VALUES(?,?,?,?)");
 	        ps.setString(1, cliente.getNome());
 	        ps.setString(2, cliente.getEmail());
 	        ps.setString(3, cliente.getSenha());       

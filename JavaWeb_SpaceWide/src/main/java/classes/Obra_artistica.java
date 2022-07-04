@@ -3,12 +3,12 @@ package classes;
   
 public class Obra_artistica {
 private int id;
-private String titulo;
-private String subtitulo;
 private String id_artista;
+private String titulo;
 private String descricao;
 private double valor; 
-public String localizacao_da_imagem;
+private String localizacao_da_imagem;
+private String estado;
 
 
 
@@ -24,11 +24,12 @@ public String getTitulo() {
 public void setTitulo(String titulo) {
 	this.titulo = titulo;
 }
-public String getSubtitulo() {
-	return subtitulo;
+
+public String getEstado() {
+	return estado;
 }
-public void setSubtitulo(String subtitulo) {
-	this.subtitulo = subtitulo;
+public void setEstado(String estado) {
+	this.estado = estado;
 }
 public String getId_artista() {
 	return id_artista;

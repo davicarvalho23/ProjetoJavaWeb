@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class obra_artisticaDao {
+public class Obra_artisticaDao {
   
 	
 	  public static Obra_artistica getObra_artisticaById(int id){
@@ -29,7 +29,6 @@ public class obra_artisticaDao {
 	            obra = new Obra_artistica();
 	            obra.setId(rs.getInt("id_obra_artistica"));
 	            obra.setTitulo(rs.getString("titulo"));
-	            obra.setSubtitulo(rs.getString("subtitulo"));
 	            obra.setDescricao(rs.getString("descricao"));   
                 obra.setValor(rs.getDouble("valor"));
 	            obra.setLocalizacao_da_imagem(rs.getString("localizacao_da_imagem"));   
@@ -48,7 +47,6 @@ public class obra_artisticaDao {
 	        Connection con = getConnection();
 	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE obra_artistica SET titulo=?, subtitulo=?, descricao=?, valor=?  WHERE id_cliente=?");
 	        ps.setString(1, obra_artistica.getTitulo());
-	        ps.setString(2, obra_artistica.getSubtitulo());
 	        ps.setString(3, obra_artistica.getDescricao());
                 ps.setDouble(4, obra_artistica.getValor());
                 ps.setInt(5, obra_artistica.getId());
@@ -69,7 +67,6 @@ public class obra_artisticaDao {
 	            Obra_artistica obra = new Obra_artistica();
 	            obra.setId(rs.getInt("id"));
 	            obra.setTitulo(rs.getString("nome"));
-	            obra.setSubtitulo(rs.getString("subtitulo"));         
 	            obra.setDescricao(rs.getString("descricao"));   
 	         
 	            list.add(obra);
@@ -161,7 +158,6 @@ public class obra_artisticaDao {
 	        Connection con = getConnection();
 	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO ARTISTA(TITULO, SUBTITULO, DESCRICAO, VALOR) VALUES(?,?,?,?)");
 	        ps.setString(1, obra.getTitulo());
-            ps.setString(2, obra.getSubtitulo());
 	        ps.setString(3, obra.getDescricao());
 	        ps.setDouble(4, obra.getValor());       
 	        

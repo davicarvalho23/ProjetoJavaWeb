@@ -1,14 +1,17 @@
 package classes;
 
+
+
 public class Artista {
 private int id; 
 private String nome; 
 private String nome_artistico;
 private String email;
 private String senha; 
-private String genero; 
-private long biografia;
+private MyEnum estado;
+private String biografia;
 
+enum MyEnum { ATIVO, INATIVO, SUSPENSO, BANIDO}
 
 public int getId() {
 	return id;
@@ -40,20 +43,20 @@ public String getSenha() {
 public void setSenha(String senha) {
 	this.senha = senha;
 }
-public String getGenero() {
-	return genero;
-}
-public void setGenero(String genero) {
-	this.genero = genero;
-}
-public long getBiografia() {
+
+public String getBiografia() {
 	return biografia;
 }
-public void setBiografia(long biografia) {
+
+public void setBiografia( String biografia) {
 	this.biografia = biografia;
 }
-
-
+public MyEnum getEstado() {
+	return estado;
+}
+public void setEstado(MyEnum estado) {
+	this.estado = estado;
+}
 
 
 }

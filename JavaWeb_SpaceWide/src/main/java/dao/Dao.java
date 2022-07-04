@@ -9,7 +9,7 @@ public class Dao {
 		Connection con = null;
 		    try{
 		        Class.forName("com.mysql.jdbc.Driver");       
-		        con=DriverManager.getConnection("jdbc:mysql://localhost:3306/site2022","root","");
+		        con=DriverManager.getConnection("jdbc:mysql://localhost:3306/site2023","root","");
 		    }catch(Exception erro){
 		        System.out.println(erro);
 		    }

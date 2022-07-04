@@ -11,26 +11,27 @@ import java.util.List;
 import classes.Artista;
 
 
-public class artistaDao {
+public class ArtistaDao {
 
 	  public static Artista getArtistaById(int id){
 	        Artista artista = null;      
 	    try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("select * from artista where Id=?");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("select * from artista where id=?");
 	        ps.setInt(1, id);
 	        ResultSet rs = ps.executeQuery();
 	        while(rs.next()){
-	            artista = new Artista();
+	 	           
+	        	artista = new Artista();
 	            artista.setId(rs.getInt("id"));
 	            artista.setNome(rs.getString("nome"));
 	            artista.setNome(rs.getString("nome_artistico"));
+	            artista.setBiografia(rs.getString("biografia"));
 	            artista.setEmail(rs.getString("email"));         
 	            artista.setSenha(rs.getString("senha"));   
-	            artista.setNome(rs.getString("genero"));
-	            
+	            artista.setEstado(null);
 	        }
-	    }catch(Exception erro){
+	   }catch(Exception erro){
 	        System.out.println(erro);
 	    }      
 	        return artista;
@@ -41,7 +42,7 @@ public class artistaDao {
 	       int status = 0;  
 	   try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE artista SET Nome=?, Email=?, Nome_artistico=? WHERE Id=?");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE artista SET nome=?, email=?, nome_artistico=? WHERE id=?");
 	        ps.setString(1, artista.getNome());
 	        ps.setString(2, artista.getEmail());
 	        ps.setInt(4, artista.getId());         
@@ -56,7 +57,7 @@ public class artistaDao {
 	    List<Artista> list = new ArrayList<Artista>();
 	    try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT * FROM artista ORDER BY Id LIMIT " + (inicio - 1) + " ," + total);
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT * FROM artista ORDER BY id LIMIT " + (inicio - 1) + " ," + total);
 	        ResultSet rs = ps.executeQuery();
 	        while(rs.next()){
 	            Artista artista = new Artista();
@@ -87,7 +88,6 @@ public class artistaDao {
 	            artista.setNome(rs.getString("nome"));
 	            artista.setNome(rs.getString("nome_artistico"));
 	            artista.setEmail(rs.getString("email"));
-	            artista.setEmail(rs.getString("genero"));
 	            
 	            list.add(artista);
 	        }       
@@ -113,11 +113,11 @@ public class artistaDao {
 	    }
 	    
 	    
-	        public static int[] getRelatorioArtista() {
+/** 	        public static int[] getRelatorioArtista() {
 
 	int[] valores = {10, 20, 30, 40};
 	        
-	        try{
+	       try{
 	            Connection con = getConnection();
 	            PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT count(*) AS ADM FROM artista where Acesso = 'Admin'");
 	            ResultSet rs = ps.executeQuery();
@@ -136,7 +136,7 @@ public class artistaDao {
 	        }
 	        return valores;
 	    }
-	        
+	        */
 
 	        
 	    
@@ -158,12 +158,12 @@ public class artistaDao {
 	       int status = 0;  
 	   try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO artista(NOME, NOME_ARTISTICO, EMAIL, SENHA, GENERO) VALUES(?,?,?,?,?)");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO artista(NOME, NOME_ARTISTICO, BIOGRAFIA, EMAIL, SENHA) VALUES(?,?,?,?,?)");
 	        ps.setString(1, artista.getNome());
 	        ps.setString(2, artista.getNome_artistico());
-	        ps.setString(3, artista.getEmail());
-	        ps.setString(4, artista.getSenha());   
-	        ps.setString(5, artista.getGenero());
+	        ps.setString(3, artista.getBiografia());
+	        ps.setString(4, artista.getEmail());
+	        ps.setString(5, artista.getSenha());  
 	        status = ps.executeUpdate();
 	    }catch(Exception erro){
 	        System.out.println(erro);
