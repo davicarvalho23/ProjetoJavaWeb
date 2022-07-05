@@ -28,9 +28,9 @@ public class Obra_artisticaDao {
 	        while(rs.next()){
 	            obra = new Obra_artistica();
 	            obra.setId(rs.getInt("id_obra_artistica"));
+	            obra.setId_artista(rs.getInt("id_artista"));
 	            obra.setTitulo(rs.getString("titulo"));
 	            obra.setDescricao(rs.getString("descricao"));   
-                obra.setValor(rs.getDouble("valor"));
 	            obra.setLocalizacao_da_imagem(rs.getString("localizacao_da_imagem"));   
 	            
 	        }
@@ -45,11 +45,11 @@ public class Obra_artisticaDao {
 	       int status = 0;  
 	   try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE obra_artistica SET titulo=?, subtitulo=?, descricao=?, valor=?  WHERE id_cliente=?");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE obra_artistica SET titulo=?, descricao=?, localizacao_da_imagem  WHERE id_cliente=?");
 	        ps.setString(1, obra_artistica.getTitulo());
-	        ps.setString(3, obra_artistica.getDescricao());
-                ps.setDouble(4, obra_artistica.getValor());
-                ps.setInt(5, obra_artistica.getId());
+	        ps.setString(2, obra_artistica.getDescricao());
+            ps.setString(3, obra_artistica.getLocalizacao_da_imagem());
+            ps.setInt(4, obra_artistica.getId());
 	        status = ps.executeUpdate();
 	    }catch(Exception erro){
 	        System.out.println(erro);

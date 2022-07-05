@@ -7,29 +7,33 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
 import classes.Artista;
+import classes.Artista.MyEnum;
 
 
 public class ArtistaDao {
 
 	  public static Artista getArtistaById(int id){
-	        Artista artista = null;      
+	       
+		  Artista artista = null;     
+		  
 	    try{
 	        Connection con = getConnection();
 	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("select * from artista where id=?");
 	        ps.setInt(1, id);
 	        ResultSet rs = ps.executeQuery();
+	        //String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
 	        while(rs.next()){
-	 	           
+	 	       
 	        	artista = new Artista();
 	            artista.setId(rs.getInt("id"));
 	            artista.setNome(rs.getString("nome"));
-	            artista.setNome(rs.getString("nome_artistico"));
+	            artista.setNome_artistico(rs.getString("nome_artistico"));
 	            artista.setBiografia(rs.getString("biografia"));
 	            artista.setEmail(rs.getString("email"));         
 	            artista.setSenha(rs.getString("senha"));   
-	            artista.setEstado(null);
+	            artista.setEstado(MyEnum.valueOf(rs.getString("estado")));
+	            artista.setData_de_criacao(null);
 	        }
 	   }catch(Exception erro){
 	        System.out.println(erro);
@@ -42,7 +46,7 @@ public class ArtistaDao {
 	       int status = 0;  
 	   try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE artista SET nome=?, email=?, nome_artistico=? WHERE id=?");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE artista SET nome=?, email=?, nome_artistico=?, biografia=? WHERE id=?");
 	        ps.setString(1, artista.getNome());
 	        ps.setString(2, artista.getEmail());
 	        ps.setInt(4, artista.getId());         
@@ -64,9 +68,10 @@ public class ArtistaDao {
 	            artista.setId(rs.getInt("id"));
 	            artista.setNome(rs.getString("nome"));
 	            artista.setNome(rs.getString("nome_artistico"));
+	            artista.setBiografia(rs.getString("biografia"));
 	            artista.setEmail(rs.getString("email"));         
 	            artista.setSenha(rs.getString("senha"));   
-	            artista.setNome(rs.getString("genero"));
+	            artista.setEstado(MyEnum.valueOf(rs.getString("estado")));
 	            
 	            list.add(artista);
 	        }       
@@ -136,7 +141,8 @@ public class ArtistaDao {
 	        }
 	        return valores;
 	    }
-	        */
+	        
+	      O ARTISTA NÃO POSSUI ACESSO, PERGUNTE AO SANDRO   */
 
 	        
 	    

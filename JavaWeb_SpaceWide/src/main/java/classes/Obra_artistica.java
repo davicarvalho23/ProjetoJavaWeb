@@ -1,17 +1,30 @@
 package classes;
-
+import java.sql.Timestamp;
   
 public class Obra_artistica {
 private int id;
-private String id_artista;
+private int id_artista;
 private String titulo;
 private String descricao;
-private double valor; 
 private String localizacao_da_imagem;
 private String estado;
+private Timestamp data_de_criacao;
+private Timestamp data_da_ultima_modificacao;
 
 
 
+public Timestamp getData_de_criacao() {
+	return data_de_criacao;
+}
+public void setData_de_criacao(Timestamp data_de_criacao) {
+	this.data_de_criacao = data_de_criacao;
+}
+public Timestamp getData_da_ultima_modificacao() {
+	return data_da_ultima_modificacao;
+}
+public void setData_da_ultima_modificacao(Timestamp data_da_ultima_modificacao) {
+	this.data_da_ultima_modificacao = data_da_ultima_modificacao;
+}
 public int getId() {
 	return id;
 }
@@ -31,10 +44,10 @@ public String getEstado() {
 public void setEstado(String estado) {
 	this.estado = estado;
 }
-public String getId_artista() {
+public int getId_artista() {
 	return id_artista;
 }
-public void setId_artista(String id_artista) {
+public void setId_artista(int id_artista) {
 	this.id_artista = id_artista;
 }
 public String getDescricao() {
@@ -42,12 +55,6 @@ public String getDescricao() {
 }
 public void setDescricao(String descricao) {
 	this.descricao = descricao;
-}
-public double getValor() {
-	return valor;
-}
-public void setValor(double valor) {
-	this.valor = valor;
 }
 public String getLocalizacao_da_imagem() {
 	return localizacao_da_imagem;

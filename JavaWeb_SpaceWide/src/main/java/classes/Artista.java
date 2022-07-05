@@ -1,7 +1,7 @@
 package classes;
 
-
-
+import java.sql.Timestamp;
+  
 public class Artista {
 private int id; 
 private String nome; 
@@ -10,8 +10,10 @@ private String email;
 private String senha; 
 private MyEnum estado;
 private String biografia;
+private Timestamp data_de_criacao;
+private Timestamp data_da_ultima_modificacao;
+private Timestamp data_da_ultima_autenticacao;
 
-enum MyEnum { ATIVO, INATIVO, SUSPENSO, BANIDO}
 
 public int getId() {
 	return id;
@@ -58,5 +60,24 @@ public void setEstado(MyEnum estado) {
 	this.estado = estado;
 }
 
+public Timestamp getData_de_criacao() {
+	return data_de_criacao;
+}
+public void setData_de_criacao(Timestamp data_de_criacao) {
+	this.data_de_criacao = data_de_criacao;
+}
+public Timestamp getData_da_ultima_modificacao() {
+	return data_da_ultima_modificacao;
+}
+public void setData_da_ultima_modificacao(Timestamp data_da_ultima_modificacao) {
+	this.data_da_ultima_modificacao = data_da_ultima_modificacao;
+}
+public Timestamp getData_da_ultima_autenticacao() {
+	return data_da_ultima_autenticacao;
+}
+public void setData_da_ultima_autenticacao(Timestamp data_da_ultima_autenticacao) {
+	this.data_da_ultima_autenticacao = data_da_ultima_autenticacao;
+}
 
+public enum MyEnum { ATIVO, INATIVO, SUSPENSO, BANIDO}
 }
