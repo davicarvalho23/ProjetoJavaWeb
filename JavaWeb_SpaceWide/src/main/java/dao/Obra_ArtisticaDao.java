@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Obra_artisticaDao {
+public class Obra_ArtisticaDao {
   
 	
 	  public static Obra_artistica getObra_artisticaById(int id){
@@ -45,11 +45,10 @@ public class Obra_artisticaDao {
 	       int status = 0;  
 	   try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE obra_artistica SET titulo=?, descricao=?, localizacao_da_imagem  WHERE id_cliente=?");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE obra_artistica SET titulo=?, descricao=? WHERE id_cliente=?");
 	        ps.setString(1, obra_artistica.getTitulo());
 	        ps.setString(2, obra_artistica.getDescricao());
-            ps.setString(3, obra_artistica.getLocalizacao_da_imagem());
-            ps.setInt(4, obra_artistica.getId());
+            ps.setInt(3, obra_artistica.getId());
 	        status = ps.executeUpdate();
 	    }catch(Exception erro){
 	        System.out.println(erro);
@@ -156,11 +155,11 @@ public class Obra_artisticaDao {
 	       int status = 0;  
 	   try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO ARTISTA(TITULO, SUBTITULO, DESCRICAO, VALOR) VALUES(?,?,?,?)");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO ARTISTA(TITULO, SUBTITULO, DESCRICAO) VALUES(?,?,?,?)");
 	        ps.setString(1, obra.getTitulo());
-	        ps.setString(3, obra.getDescricao());
-	        ps.setDouble(4, obra.getValor());       
-	        
+	        ps.setString(2, obra.getDescricao());
+                ps.setInt(3, obra.getId_artista());
+	        ps.setInt(4, obra.getId());
 	        status = ps.executeUpdate();
 	    }catch(Exception erro){
 	        System.out.println(erro);
