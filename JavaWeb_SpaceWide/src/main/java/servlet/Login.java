@@ -31,7 +31,7 @@ HttpSession sessao = request.getSession();
 if(email.equals("admin")&& senha.equals("123")){
     sessao.setAttribute("email", email);
     request.setAttribute("email", email);
-    request.getRequestDispatcher("principal.jsp").forward(request, response);
+    request.getRequestDispatcher("index.jsp").forward(request, response);
 }else{
     request.setAttribute("falha", "Erro de Autenticação");
     request.getRequestDispatcher("login.jsp").forward(request, response);

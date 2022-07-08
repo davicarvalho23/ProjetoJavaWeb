@@ -45,10 +45,11 @@ public class Obra_ArtisticaDao {
 	       int status = 0;  
 	   try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE obra_artistica SET titulo=?, descricao=? WHERE id_cliente=?");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE obra_artistica SET titulo=?, descricao=?, localizacao_da_imagem  WHERE id_cliente=?");
 	        ps.setString(1, obra_artistica.getTitulo());
 	        ps.setString(2, obra_artistica.getDescricao());
-            ps.setInt(3, obra_artistica.getId());
+            ps.setString(3, obra_artistica.getLocalizacao_da_imagem());
+            ps.setInt(4, obra_artistica.getId());
 	        status = ps.executeUpdate();
 	    }catch(Exception erro){
 	        System.out.println(erro);
@@ -155,7 +156,7 @@ public class Obra_ArtisticaDao {
 	       int status = 0;  
 	   try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO ARTISTA(TITULO, SUBTITULO, DESCRICAO) VALUES(?,?,?,?)");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO ARTISTA(TITULO, SUBTITULO, DESCRICAO) VALUES(?,?,?)");
 	        ps.setString(1, obra.getTitulo());
 	        ps.setString(2, obra.getDescricao());
                 ps.setInt(3, obra.getId_artista());

@@ -8,8 +8,8 @@ private String nome;
 private String nome_artistico;
 private String email;
 private String senha; 
-private MyEnum estado;
-private String biografia;
+private String estado;
+private String acesso;
 private Timestamp data_de_criacao;
 private Timestamp data_da_ultima_modificacao;
 private Timestamp data_da_ultima_autenticacao;
@@ -45,21 +45,18 @@ public String getSenha() {
 public void setSenha(String senha) {
 	this.senha = senha;
 }
-
-public String getBiografia() {
-	return biografia;
-}
-
-public void setBiografia( String biografia) {
-	this.biografia = biografia;
-}
-public MyEnum getEstado() {
+public String getEstado() {
 	return estado;
 }
-public void setEstado(MyEnum estado) {
+public void setEstado(String estado) {
 	this.estado = estado;
 }
-
+public String getAcesso() {
+        return acesso;
+    }
+public void setAcesso(String acesso) {
+        this.acesso = acesso;
+    }
 public Timestamp getData_de_criacao() {
 	return data_de_criacao;
 }
@@ -79,5 +76,4 @@ public void setData_da_ultima_autenticacao(Timestamp data_da_ultima_autenticacao
 	this.data_da_ultima_autenticacao = data_da_ultima_autenticacao;
 }
 
-public enum MyEnum { ATIVO, INATIVO, SUSPENSO, BANIDO}
 }

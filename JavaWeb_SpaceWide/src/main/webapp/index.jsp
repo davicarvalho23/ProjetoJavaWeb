@@ -2,30 +2,32 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css" integrity="sha256-ZKOGvp7YVwX26g2d0ooDvbSBQSEiIi4Bd9FuK+12Zk0=" crossorigin="anonymous" />
   <link rel="stylesheet" href="./css/main.css">
   <title>Space Wide </title>
+ 
 </head>
 <body>
+    
   <header>
+      
     <nav class="navbar">
+        
       <div class="left">
         <div class="logo">
           <a href="index.jsp">
             <h1 class="logo">Space<span>Wide</span></h1>
           </a>
+             <%@include file="acessocomum.jsp"%>
         </div>
         <div class="nav-search-form">
-          <form>
-       
-          </form>
         </div>
       </div>
       <ul class="nav">
-        <li><a href="#">Registrar-se</a></li>
-        <!--<li><a href="#">Login</a></li>-->
+        <li><a href="login.jsp">Login</a></li>
+        
       </ul>
     </nav>
   </header>
@@ -33,7 +35,7 @@
   <section class="hero">
     <div class="hero-container">
       <div class="hero-content">
-        <h1>Nunca sera</h1>
+        <h1>Explore o inexplorado.</h1>
         <p>
           Site em desenvolvimento. <br>
           Provérbios 10:20 Prata escolhida é a língua do justo; o coração dos perversos é de nenhum valor. <br>
@@ -51,16 +53,16 @@
   <section class="images">
     <div id="gallery">
      
-      <a href="/imagens/1.jpg">
+      <a href="./imagens/1.jpg">
           <img alt="Brabuleta" src="./imagens/1.jpg"/>
       </a>
-      <a href="/imagens/2.jpg">
+      <a href="./imagens/2.jpg">
           <img alt="Paisagem" src="./imagens/2.jpg"/>
       </a>
-      <a href="/imagens/3.jpg">
+      <a href="./imagens/3.jpg">
           <img alt="Camera" src="./imagens/3.jpg"/>
       </a>
-      <a href="/imagens/diferencial.png">
+      <a href="./imagens/diferencial.png">
         <img alt="Camera" src="./imagens/diferencial.png"/>
       </a>
       <a href="/imagens/4.jpg">
@@ -148,8 +150,6 @@
       <img alt="Camera" src="./imagens/3.jpg"/>
     </a>
              
-   
-     
     </div>
   </section>
 

@@ -7,8 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
-
+import javax.swing.JOptionPane;
 
 public class ClienteDao {
 	  public static Cliente getClienteById(int id){
@@ -22,11 +21,10 @@ public class ClienteDao {
 	            cliente = new Cliente();
 	            cliente.setId(rs.getInt("id"));
 	            cliente.setNome(rs.getString("nome"));
-	            cliente.setApelido(rs.getString("apelido"));
-	            cliente.setEstado(rs.getString("estado"));
 	            cliente.setEmail(rs.getString("email"));         
 	            cliente.setSenha(rs.getString("senha"));   
-	            
+	            cliente.setEstado(rs.getString("estado"));
+                 //   cliente.setData_de_criacao(current_timestamp());
 	        }
 	    }catch(Exception erro){
 	        System.out.println(erro);
@@ -39,7 +37,7 @@ public class ClienteDao {
 	       int status = 0;  
 	   try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE cliente SET nome=?, apelido=?, estado=?, email=?  WHERE id_cliente=?");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE cliente SET nome=?, email=?  WHERE id_cliente=?");
 	        ps.setString(1, cliente.getNome());
 	        ps.setString(2, cliente.getEmail());
 	        ps.setInt(4, cliente.getId());         
@@ -71,6 +69,47 @@ public class ClienteDao {
 	    return list;
 	    }
 
+            
+            
+            	    
+          public static Cliente logar(String email, String senha){ 
+                Cliente ar = new Cliente();    
+    try{
+        Connection con = getConnection();
+        PreparedStatement ps = (PreparedStatement) con.prepareStatement("select * from cliente where email=?");
+        ps.setString(1, email);
+        ResultSet rs = ps.executeQuery();
+        //Verifica se a consulta retornou resultado
+        if (rs.next()) {       
+                if(rs.getString("estado").equals("ativo")){
+                    if(rs.getString("senha").equals(senha)){
+                        ar.setId(rs.getInt("id"));
+                       ar.setNome(rs.getString("nome"));
+                        ar.setEmail(rs.getString("email"));         
+                        ar.setSenha(rs.getString("senha"));   
+                       ar.setAcesso(rs.getString("acesso"));     
+                    }else{
+                        //Senha errada
+                        ar = null;
+                    }
+                }else{
+                   //Usuário Inativo
+                   ar = null;     
+                }
+        }else{
+            // E-mail não existe
+           ar = null; 
+        }
+    }catch(Exception erro){
+       JOptionPane.showMessageDialog(null, "Deu Erro, tente novamente.");
+    }      
+        return ar;
+    }
+   
+            
+            
+            
+            
 	    public static List<Cliente> getRelatorio() {
 	    List<Cliente> list = new ArrayList<Cliente>();
 	    try{
@@ -112,16 +151,16 @@ public class ClienteDao {
 	        
 	        try{
 	            Connection con = getConnection();
-	            PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT count(*) AS ADM FROM cliente where Acesso = 'Admin'");
+	            PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT count(*) AS admin FROM cliente where Acesso = 'admin'");
 	            ResultSet rs = ps.executeQuery();
 	            while(rs.next()){
-	                valores[0] = rs.getInt("ADM");
+	                valores[0] = rs.getInt("admin");
 	            }   
 	 
-	            ps = (PreparedStatement) con.prepareStatement("SELECT count(*) AS Comum FROM cliente where Acesso = 'Comum'");
+	            ps = (PreparedStatement) con.prepareStatement("SELECT count(*) AS comum FROM cliente where Acesso = 'comum'");
 	            rs = ps.executeQuery();
 	            while(rs.next()){
-	                valores[1] = rs.getInt("Comum");
+	                valores[1] = rs.getInt("comum");
 	            }            
 	            
 	        }catch(Exception erro){
@@ -151,7 +190,7 @@ public class ClienteDao {
 	       int status = 0;  
 	   try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO CLIENTE(NOME,APELIDO,ESTADO,EMAIL,SENHA) VALUES(?,?,?,?)");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO CLIENTE(NOME,EMAI, SENHA, ESTADO) VALUES(?,?,?,?)");
 	        ps.setString(1, cliente.getNome());
 	        ps.setString(2, cliente.getEmail());
 	        ps.setString(3, cliente.getSenha());       

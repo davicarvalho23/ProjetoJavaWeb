@@ -1,13 +1,31 @@
 package classes;
 
+import java.sql.Timestamp;
+
 public class Cliente {
 private int id; 
 private String nome;
-private String apelido;
 private String email;
 private String senha;
 private String estado;
+private String acesso;
+private Timestamp data_de_criacao;
+private Timestamp data_da_ultima_modificacao;
 
+
+
+public Timestamp getData_de_criacao() {
+	return data_de_criacao;
+}
+public void setData_de_criacao(Timestamp data_de_criacao) {
+	this.data_de_criacao = data_de_criacao;
+}
+public Timestamp getData_da_ultima_modificacao() {
+	return data_da_ultima_modificacao;
+}
+public void setData_da_ultima_modificacao(Timestamp data_da_ultima_modificacao) {
+	this.data_da_ultima_modificacao = data_da_ultima_modificacao;
+}
 public int getId() {
 	return id;
 }
@@ -19,12 +37,6 @@ public String getNome() {
 }
 public void setNome(String nome) {
 	this.nome = nome;
-}
-public String getApelido() {
-	return apelido;
-}
-public void setApelido(String apelido) {
-	this.apelido = apelido;
 }
 public String getEmail() {
 	return email;
@@ -44,9 +56,12 @@ public String getEstado() {
 public void setEstado(String estado) {
 	this.estado = estado;
 }
+    public String getAcesso() {
+        return acesso;
+    }
 
-
-
-
+    public void setAcesso(String acesso) {
+        this.acesso = acesso;
+    }
 
 }

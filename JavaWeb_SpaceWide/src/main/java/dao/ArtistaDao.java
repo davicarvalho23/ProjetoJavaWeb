@@ -8,7 +8,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import classes.Artista;
-import classes.Artista.MyEnum;
+import javax.swing.JOptionPane;
+
 
 
 public class ArtistaDao {
@@ -16,8 +17,7 @@ public class ArtistaDao {
 	  public static Artista getArtistaById(int id){
 	       
 		  Artista artista = null;     
-		  
-	    try{
+		try{
 	        Connection con = getConnection();
 	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("select * from artista where id=?");
 	        ps.setInt(1, id);
@@ -29,10 +29,10 @@ public class ArtistaDao {
 	            artista.setId(rs.getInt("id"));
 	            artista.setNome(rs.getString("nome"));
 	            artista.setNome_artistico(rs.getString("nome_artistico"));
-	            artista.setBiografia(rs.getString("biografia"));
 	            artista.setEmail(rs.getString("email"));         
 	            artista.setSenha(rs.getString("senha"));   
-	            artista.setEstado(MyEnum.valueOf(rs.getString("estado")));
+	            artista.setEstado(rs.getString("estado"));
+                    artista.setAcesso(rs.getString("acesso"));
 	            artista.setData_de_criacao(null);
 	        }
 	   }catch(Exception erro){
@@ -41,14 +41,51 @@ public class ArtistaDao {
 	        return artista;
 	    }
 	    
+          public static Artista logar(String email, String senha){ 
+Artista ar = new Artista();    
+    try{
+        Connection con = getConnection();
+        PreparedStatement ps = (PreparedStatement) con.prepareStatement("select * from artista where email=?");
+        ps.setString(1, email);
+        ResultSet rs = ps.executeQuery();
+        //Verifica se a consulta retornou resultado
+        if (rs.next()) {       
+                if(rs.getString("estado").equals("ativo")){
+                    if(rs.getString("senha").equals(senha)){
+                        ar.setId(rs.getInt("id"));
+                       ar.setNome(rs.getString("nome"));
+                        ar.setEmail(rs.getString("email"));         
+                        ar.setSenha(rs.getString("senha"));   
+                       ar.setAcesso(rs.getString("acesso"));     
+                    }else{
+                        //Senha errada
+                        ar = null;
+                    }
+                }else{
+                   //Usuário Inativo
+                   ar = null;     
+                }
+        }else{
+            // E-mail não existe
+           ar = null; 
+        }
+    }catch(Exception erro){
+       JOptionPane.showMessageDialog(null, "Deu Erro, tente novamente.");
+    }      
+        return ar;
+    }
+   
+
+
 	    
 	   public static int editarArtista(Artista artista){
 	       int status = 0;  
 	   try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE artista SET nome=?, email=?, nome_artistico=?, biografia=? WHERE id=?");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE artista SET nome=?, email=?, nome_artistico=? WHERE id=?");
 	        ps.setString(1, artista.getNome());
-	        ps.setString(2, artista.getEmail());
+                ps.setString(2, artista.getNome_artistico());
+	        ps.setString(3, artista.getEmail());
 	        ps.setInt(4, artista.getId());         
 	        status = ps.executeUpdate();
 	    }catch(Exception erro){
@@ -68,10 +105,9 @@ public class ArtistaDao {
 	            artista.setId(rs.getInt("id"));
 	            artista.setNome(rs.getString("nome"));
 	            artista.setNome(rs.getString("nome_artistico"));
-	            artista.setBiografia(rs.getString("biografia"));
 	            artista.setEmail(rs.getString("email"));         
 	            artista.setSenha(rs.getString("senha"));   
-	            artista.setEstado(MyEnum.valueOf(rs.getString("estado")));
+	            artista.setEstado(rs.getString("estado"));
 	            
 	            list.add(artista);
 	        }       
@@ -93,7 +129,6 @@ public class ArtistaDao {
 	            artista.setNome(rs.getString("nome"));
 	            artista.setNome(rs.getString("nome_artistico"));
 	            artista.setEmail(rs.getString("email"));
-	            
 	            list.add(artista);
 	        }       
 	    }catch(Exception erro){
@@ -142,7 +177,7 @@ public class ArtistaDao {
 	        return valores;
 	    }
 	        
-	      O ARTISTA N�O POSSUI ACESSO, PERGUNTE AO SANDRO   */
+	      O ARTISTA N�O POSSUI ACESSO, PERGUNTE AO SANDRO   */
 
 	        
 	    
@@ -164,10 +199,9 @@ public class ArtistaDao {
 	       int status = 0;  
 	   try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO artista(NOME, NOME_ARTISTICO, BIOGRAFIA, EMAIL, SENHA) VALUES(?,?,?,?,?)");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO artista(NOME, NOME_ARTISTICO, EMAIL, SENHA) VALUES(?,?,?,?,?)");
 	        ps.setString(1, artista.getNome());
 	        ps.setString(2, artista.getNome_artistico());
-	        ps.setString(3, artista.getBiografia());
 	        ps.setString(4, artista.getEmail());
 	        ps.setString(5, artista.getSenha());  
 	        status = ps.executeUpdate();
@@ -179,5 +213,5 @@ public class ArtistaDao {
 	    
 	}
 
-		
+
 		
