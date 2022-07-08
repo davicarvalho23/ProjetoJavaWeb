@@ -25,16 +25,16 @@
                 <button class="cn"><a href="/html/cadastrar.html">Junte-se</a></button>
 
              <div class="form">
-                 <form action="logar_artista.jsp" method="post">  
+                 <form action="index.jsp" method="post">  
                     <h2>Space<span>Wide</span>
                     <input type="email" name="email" placeholder="Email...">
                     <input type="password" name="senha" placeholder="Senha...">
-                    <input type="submit" value="Entrar">
+                    <input type="submit" value="Entrar" >
                     </form>
                  
               
                     <p class="link">Não possui uma conta ?
-                    Crie uma</a><a href=""> aqui</a></p>  
+                    Crie uma</a><a href="#"> aqui</a></p>  
              </div>
         </div>
     </div>

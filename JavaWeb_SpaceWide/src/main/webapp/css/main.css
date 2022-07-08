@@ -122,7 +122,7 @@ a {
 /* Hero */
 .hero {
   height: 600px;
-  background:url('./imagens/menos.jpg') no-repeat right top;
+  background:url('../imagens/menos.jpg') no-repeat right top;
   background-size: 100% 770px;
   width: 100%;
   position: relative;

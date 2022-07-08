@@ -20,15 +20,13 @@
           <a href="index.jsp">
             <h1 class="logo">Space<span>Wide</span></h1>
           </a>
-             <%@include file="acessocomum.jsp"%>
         </div>
         <div class="nav-search-form">
         </div>
       </div>
       <ul class="nav">
         <li><a href="login.jsp">Login</a></li>
-        
-      </ul>
+       <%@include file="menu.jsp"%>
     </nav>
   </header>
 
