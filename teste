@@ -1,0 +1,2 @@
+$ git reset --mixed hash-do-penultimo-commit 
+$ git revert hash-do-ultimo-commit
