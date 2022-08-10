@@ -19,7 +19,7 @@ public class ArtistaDao {
 		  Artista artista = null;     
 		try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("select * from artista where id=?");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT nome, email, senha, \"artista\" AS acesso FROM artista WHERE id = ?");
 	        ps.setInt(1, id);
 	        ResultSet rs = ps.executeQuery();
 	        //String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
@@ -32,7 +32,7 @@ public class ArtistaDao {
 	            artista.setEmail(rs.getString("email"));         
 	            artista.setSenha(rs.getString("senha"));   
 	            artista.setEstado(rs.getString("estado"));
-                    artista.setAcesso(rs.getString("acesso"));
+                artista.setAcesso(rs.getString("acesso"));
 	            artista.setData_de_criacao(null);
 	        }
 	   }catch(Exception erro){
@@ -70,7 +70,7 @@ Artista ar = new Artista();
            ar = null; 
         }
     }catch(Exception erro){
-       JOptionPane.showMessageDialog(null, "Deu Erro, tente novamente.");
+    	erro.printStackTrace();
     }      
         return ar;
     }

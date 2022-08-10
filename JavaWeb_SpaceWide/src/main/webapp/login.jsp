@@ -1,5 +1,5 @@
-<%@page import="classes.Artista"%>
-<%@ page import="dao.Dao, dao.ArtistaDao"%>
+<%@page import="classes.Artista, classes.Cliente"%>
+<%@ page import="dao.Dao, dao.ArtistaDao, dao.ClienteDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="c" class="classes.Artista"></jsp:useBean>
 <jsp:setProperty property="*" name="c" />
@@ -10,12 +10,16 @@
     String senha = request.getParameter("senha");
     
     //Envia os valores para o Dao e recebe o resultado da consulta
+    
+  
     Artista ar = ArtistaDao.logar(email, senha);
+    Cliente cl = ClienteDao.logar(email, senha);
+ 
     
     //Verifica se algum usuário foi encontrado
-    if(ar !=null){
+    if(cl != null || ar !=null){
         //Cria sessão e redireciona para a tela principal
-        request.getSession().setAttribute("usuario", ar.getNome());
+        request.getSession().setAttribute("nome", ar.getNome());
         request.getSession().setAttribute("acesso", ar.getAcesso());    
         response.sendRedirect("index.jsp");
         

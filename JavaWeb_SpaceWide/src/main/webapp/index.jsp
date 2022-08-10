@@ -1,5 +1,3 @@
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -25,7 +23,7 @@
                 <button class="cn"><a href="/html/cadastrar.html">Junte-se</a></button>
 
              <div class="form">
-                 <form action="index.jsp" method="post">  
+                 <form action="login.jsp" method="post">  
                     <h2>Space<span>Wide</span>
                     <input type="email" name="email" placeholder="Email...">
                     <input type="password" name="senha" placeholder="Senha...">
