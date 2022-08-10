@@ -101,7 +101,7 @@ public class ClienteDao {
            ar = null; 
         }
     }catch(Exception erro){
-       JOptionPane.showMessageDialog(null, "Deu Erro, tente novamente.");
+    	erro.printStackTrace();
     }      
         return ar;
     }

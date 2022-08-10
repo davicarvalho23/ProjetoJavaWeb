@@ -1,42 +1,26 @@
-
-
+<%@page import="classes.Artista"%>
+<%@ page import="dao.Dao, dao.ArtistaDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-   
-    <title>Login</title>
-    <link rel="stylesheet" href="./css/login.css">
-</head>
-<body>
-    <div class="main">
-        <div class="navbar">
-            <div class="icon">
-            </div>
-            <div class="menu">
-            </div>
-        </div> 
-        <div class="content">
-            <h1><br><span>Artes digitais & Fotografias</span><br>Com alta qualidade</h1>
-            <p class="par">O SpaceWide é uma plataforma de compartilhamento e venda de Imagens digitais<br>
-            com alta qualidade , já contamos na nossa comunidade<br>
-            uma grande quantidade de artistas com diversos tipos de artes digitais </p>
-
-                <button class="cn"><a href="/html/cadastrar.html">Junte-se</a></button>
-
-             <div class="form">
-                 <form action="index.jsp" method="post">  
-                    <h2>Space<span>Wide</span>
-                    <input type="email" name="email" placeholder="Email...">
-                    <input type="password" name="senha" placeholder="Senha...">
-                    <input type="submit" value="Entrar" >
-                    </form>
-                 
-              
-                    <p class="link">Não possui uma conta ?
-                    Crie uma</a><a href="#"> aqui</a></p>  
-             </div>
-        </div>
-    </div>
-</body>
-</html>
+<jsp:useBean id="c" class="classes.Artista"></jsp:useBean>
+<jsp:setProperty property="*" name="c" />
+    
+<%
+    //Lê valores do formulário
+    String email = request.getParameter("email");
+    String senha = request.getParameter("senha");
+    
+    //Envia os valores para o Dao e recebe o resultado da consulta
+    Artista ar = ArtistaDao.logar(email, senha);
+    
+    //Verifica se algum usuário foi encontrado
+    if(ar !=null){
+        //Cria sessão e redireciona para a tela principal
+        request.getSession().setAttribute("usuario", ar.getNome());
+        request.getSession().setAttribute("acesso", ar.getAcesso());    
+        response.sendRedirect("index.jsp");
+        
+        //Redireciona erros para a tela de login
+    }else{
+        response.sendRedirect("login.jsp");
+    }
+%>
