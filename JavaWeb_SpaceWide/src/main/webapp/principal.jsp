@@ -25,6 +25,7 @@
         </div>
       </div>
       <ul class="nav">
+<<<<<<< HEAD
        
        <%@include file="menu.jsp"%>
     </nav>
@@ -50,6 +51,24 @@
 
  
 
+=======
+        <li><a href="login.jsp">Login</a></li>
+       <%@include file="menu.jsp"%>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1>Explore o inexplorado.</h1>
+        <p>
+          Site em desenvolvimento. <br>
+          Provérbios 10:20 Prata escolhida é a língua do justo; o coração dos perversos é de nenhum valor. <br>
+          21 Os lábios do justo apascentam a muitos, mas os tolos morrem por falta de entendimento.
+        </p>
+        <div class="hero-search-form">
+     
+>>>>>>> branch 'master' of https://github.com/davicarvalho23/ProjetoJavaWeb.git
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" integrity="sha256-bIPvSCQ7+G5GbIXDt2B+9AMpCmFtxTVLU+aWAIPzL8I=" crossorigin="anonymous"></script>
   <script>
