@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import classes.Artista;
-import javax.swing.JOptionPane;
+
 
 
 
@@ -19,8 +19,7 @@ public class ArtistaDao {
 		  Artista artista = null;     
 		try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT nome, email, senha, \"artista\" AS acesso FROM artista WHERE id = ?");
-	        ps.setInt(1, id);
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT nome, nome_artistico, email, senha, \"artista\" AS acesso FROM artista WHERE id = ?");
 	        ResultSet rs = ps.executeQuery();
 	        //String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
 	        while(rs.next()){
@@ -30,9 +29,10 @@ public class ArtistaDao {
 	            artista.setNome(rs.getString("nome"));
 	            artista.setNome_artistico(rs.getString("nome_artistico"));
 	            artista.setEmail(rs.getString("email"));         
-	            artista.setSenha(rs.getString("senha"));   
+	            artista.setSenha(rs.getString("senha"));  
+	            artista.setAcesso(rs.getString("acesso"));
 	            artista.setEstado(rs.getString("estado"));
-                artista.setAcesso(rs.getString("acesso"));
+               
 	            artista.setData_de_criacao(null);
 	        }
 	   }catch(Exception erro){
@@ -153,7 +153,7 @@ Artista ar = new Artista();
 	    }
 	    
 	    
-/** 	        public static int[] getRelatorioArtista() {
+	        public static int[] getRelatorioArtista() {
 
 	int[] valores = {10, 20, 30, 40};
 	        
@@ -176,10 +176,7 @@ Artista ar = new Artista();
 	        }
 	        return valores;
 	    }
-	        
-	      O ARTISTA N�O POSSUI ACESSO, PERGUNTE AO SANDRO   */
-
-	        
+	        	        
 	    
 	    public static int excluirArtista(Artista artista){
 	       int status = 0;  

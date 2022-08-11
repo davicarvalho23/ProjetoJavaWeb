@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404</title>
-    <link rel="stylesheet" href="/css/404.css">
+    <link rel="stylesheet" href="./css/404.css">
 </head>
 <body>
 <div class="container">
@@ -36,6 +36,6 @@
     </div>
    <h1 class="second-four">4</h1>
 </div>
-    <p class="wrong-para"><a href="/html/login.html">Voltar para a pagina inicial!!!</a></p>
+    <p class="wrong-para"><a href="principal.jsp">Voltar para a pagina inicial!!!</a></p>
 </body>
 </html>

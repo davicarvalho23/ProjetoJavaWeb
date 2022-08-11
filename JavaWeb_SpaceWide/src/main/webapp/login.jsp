@@ -21,10 +21,10 @@
         //Cria sessão e redireciona para a tela principal
         request.getSession().setAttribute("nome", ar.getNome());
         request.getSession().setAttribute("acesso", ar.getAcesso());    
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("principal.jsp");
         
         //Redireciona erros para a tela de login
     }else{
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("index.jsp");
     }
 %>
