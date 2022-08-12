@@ -151,13 +151,13 @@ public class ClienteDao {
 	        
 	        try{
 	            Connection con = getConnection();
-	            PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT count(*) AS admin FROM cliente where Acesso = 'admin'");
+	            PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT count(*) AS admin FROM cliente where estado = 'ativo'");
 	            ResultSet rs = ps.executeQuery();
 	            while(rs.next()){
 	                valores[0] = rs.getInt("admin");
 	            }   
 	 
-	            ps = (PreparedStatement) con.prepareStatement("SELECT count(*) AS comum FROM cliente where Acesso = 'comum'");
+	            ps = (PreparedStatement) con.prepareStatement("SELECT count(*) AS comum FROM cliente where estado = 'inativo'");
 	            rs = ps.executeQuery();
 	            while(rs.next()){
 	                valores[1] = rs.getInt("comum");

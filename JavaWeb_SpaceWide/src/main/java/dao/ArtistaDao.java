@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import classes.Artista;
 
@@ -21,8 +22,9 @@ public class ArtistaDao {
 	        Connection con = getConnection();
 	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT nome, nome_artistico, email, senha, \"artista\" AS acesso FROM artista WHERE id = ?");
 	        ResultSet rs = ps.executeQuery();
-	        //String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
+	    
 	        while(rs.next()){
+	 	       Calendar cl;
 	 	       
 	        	artista = new Artista();
 	            artista.setId(rs.getInt("id"));
@@ -30,52 +32,15 @@ public class ArtistaDao {
 	            artista.setNome_artistico(rs.getString("nome_artistico"));
 	            artista.setEmail(rs.getString("email"));         
 	            artista.setSenha(rs.getString("senha"));  
-	            artista.setAcesso(rs.getString("acesso"));
 	            artista.setEstado(rs.getString("estado"));
                
-	            artista.setData_de_criacao(null);
+	
 	        }
 	   }catch(Exception erro){
 	        System.out.println(erro);
 	    }      
 	        return artista;
 	    }
-	    
-          public static Artista logar(String email, String senha){ 
-Artista ar = new Artista();    
-    try{
-        Connection con = getConnection();
-        PreparedStatement ps = (PreparedStatement) con.prepareStatement("select * from artista where email=?");
-        ps.setString(1, email);
-        ResultSet rs = ps.executeQuery();
-        //Verifica se a consulta retornou resultado
-        if (rs.next()) {       
-                if(rs.getString("estado").equals("ativo")){
-                    if(rs.getString("senha").equals(senha)){
-                        ar.setId(rs.getInt("id"));
-                       ar.setNome(rs.getString("nome"));
-                        ar.setEmail(rs.getString("email"));         
-                        ar.setSenha(rs.getString("senha"));   
-                       ar.setAcesso(rs.getString("acesso"));     
-                    }else{
-                        //Senha errada
-                        ar = null;
-                    }
-                }else{
-                   //Usuário Inativo
-                   ar = null;     
-                }
-        }else{
-            // E-mail não existe
-           ar = null; 
-        }
-    }catch(Exception erro){
-    	erro.printStackTrace();
-    }      
-        return ar;
-    }
-   
-
 
 	    
 	   public static int editarArtista(Artista artista){
@@ -159,13 +124,13 @@ Artista ar = new Artista();
 	        
 	       try{
 	            Connection con = getConnection();
-	            PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT count(*) AS ADM FROM artista where Acesso = 'Admin'");
+	            PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT count(*) AS ADM FROM artista where estado = 'ativo'");
 	            ResultSet rs = ps.executeQuery();
 	            while(rs.next()){
 	                valores[0] = rs.getInt("ADM");
 	            }   
 	 
-	            ps = (PreparedStatement) con.prepareStatement("SELECT count(*) AS Comum FROM artista where Acesso = 'Comum'");
+	            ps = (PreparedStatement) con.prepareStatement("SELECT count(*) AS Comum FROM artista where estado = 'ativo'");
 	            rs = ps.executeQuery();
 	            while(rs.next()){
 	                valores[1] = rs.getInt("Comum");
