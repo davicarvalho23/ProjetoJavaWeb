@@ -1,30 +1,32 @@
-<%@page import="classes.Artista, classes.Cliente"%>
-<%@ page import="dao.Dao, dao.ArtistaDao, dao.ClienteDao"%>
+<%@page import="classes.Administrador"%>
+<%@ page import="dao.Dao, dao.AdministradorDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="c" class="classes.Artista"></jsp:useBean>
-<jsp:setProperty property="*" name="c" />
+<jsp:useBean id="u" class="classes.Administrador"></jsp:useBean>
+<jsp:setProperty property="*" name="u" />
     
 <%
-    //Lê valores do formulário
+   
     String email = request.getParameter("email");
     String senha = request.getParameter("senha");
     
     //Envia os valores para o Dao e recebe o resultado da consulta
     
-  
-    Artista ar = ArtistaDao.logar(email, senha);
-    Cliente cl = ClienteDao.logar(email, senha);
- 
+ 	
+ 		
+ 	
+   Administrador adm = AdministradorDao.logar(email, senha);
     
     //Verifica se algum usuário foi encontrado
-    if(cl != null || ar !=null){
+    if(adm !=null){
         //Cria sessão e redireciona para a tela principal
-        request.getSession().setAttribute("nome", ar.getNome());
-        request.getSession().setAttribute("acesso", ar.getAcesso());    
-        response.sendRedirect("principal.jsp");
+        request.getSession().setAttribute("nome", adm.getNome());
+        response.sendRedirect("./principal/principal.jsp");
         
-        //Redireciona erros para a tela de login
     }else{
-        response.sendRedirect("index.jsp");
-    }
+    	response.sendRedirect("index.jsp");  
+    	request.setAttribute("msg","Informe o login e senha.");
+    	}
+ 	
+    
+    
 %>

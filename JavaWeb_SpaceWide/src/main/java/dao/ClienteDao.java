@@ -71,41 +71,7 @@ public class ClienteDao {
 
             
             
-            	    
-          public static Cliente logar(String email, String senha){ 
-                Cliente ar = new Cliente();    
-    try{
-        Connection con = getConnection();
-        PreparedStatement ps = (PreparedStatement) con.prepareStatement("select * from cliente where email=?");
-        ps.setString(1, email);
-        ResultSet rs = ps.executeQuery();
-        //Verifica se a consulta retornou resultado
-        if (rs.next()) {       
-                if(rs.getString("estado").equals("ativo")){
-                    if(rs.getString("senha").equals(senha)){
-                        ar.setId(rs.getInt("id"));
-                       ar.setNome(rs.getString("nome"));
-                        ar.setEmail(rs.getString("email"));         
-                        ar.setSenha(rs.getString("senha"));   
-                       ar.setAcesso(rs.getString("acesso"));     
-                    }else{
-                        //Senha errada
-                        ar = null;
-                    }
-                }else{
-                   //Usuário Inativo
-                   ar = null;     
-                }
-        }else{
-            // E-mail não existe
-           ar = null; 
-        }
-    }catch(Exception erro){
-    	erro.printStackTrace();
-    }      
-        return ar;
-    }
-   
+     
             
             
             

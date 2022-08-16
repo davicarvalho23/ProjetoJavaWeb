@@ -2,32 +2,24 @@
 <meta charset="utf-8">
 </head>
 <body>
-<ul>
-            <%
-      String adm = (String) request.getSession().getAttribute("acesso");
- 
-       if (adm.equals("admin")) {
-          %>
-<li class='dropdown'><a href='javascript:void(0)' class='dropbtn'>Usuários</a>
-<div class='dropdown-content'><a href='#'>Relatório de Usuários</a><a href='artistacontrolar.jsp?pag=1'>Controlar Usuários</a><a href='usuariocadastrarform.jsp'>Cadastrar Usuário</a></div></li>
-       
-  <%
-          
-        }
-   %>  
-  
-              
-
- <li class="dropdown" style="float:right">
-
-     <a href="javascript:void(0)" class="dropbtn"><%=request.getSession().getAttribute("nome")%></a>
-    <div class="dropdown-content">
-      <a href="#">Alterar Dados</a>
-      <a href="#">Alterar Senha</a>
-      <a href="deslogar.jsp">Deslogar</a>
-    </div>
-  </li>
-
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="#!">one</a></li>
+  <li><a href="#!">two</a></li>
+  <li class="divider"></li>
+  <li><a href="#!">three</a></li>
 </ul>
+<nav>
+  <div class="nav-wrapper">
+    <a href="#!" class="brand-logo">Logo</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="sass.html">Sass</a></li>
+      <li><a href="badges.html">Components</a></li>
+      <!-- Dropdown Trigger -->
+      <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+    </ul>
+  </div>
+</nav>
+	<script type="text/javascript">$( document ).ready(function) block
+	$(".dropdown-trigger").dropdown();</script>
 
 </body>

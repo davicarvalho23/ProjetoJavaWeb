@@ -25,7 +25,7 @@
 
              <div class="form">
              
-                 <form action="/ServletLogin" method="post"> 
+                 <form action="login.jsp" method="post"> 
                     <h2>Space<span>Wide</span></h2>
                     <input type="email" name="email" placeholder="Email...">
                     <input type="password" name="senha" placeholder="Senha...">

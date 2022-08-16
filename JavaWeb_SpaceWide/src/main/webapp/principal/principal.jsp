@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css" integrity="sha256-ZKOGvp7YVwX26g2d0ooDvbSBQSEiIi4Bd9FuK+12Zk0=" crossorigin="anonymous" />
-  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="../css/main.css">
   <title>Space Wide </title>
- 
+  
 </head>
 <body>
     
   <header>
       
     <nav class="navbar">
-        
+       			<%@include file=../menu.jsp"%>
       <div class="left">
         <div class="logo">
           <a href="index.jsp">
@@ -24,8 +24,7 @@
         <div class="nav-search-form">
         </div>
       </div>
-      <ul class="nav">
-<%@include file="menu.jsp"%>
+
     </nav>
   </header>
 
