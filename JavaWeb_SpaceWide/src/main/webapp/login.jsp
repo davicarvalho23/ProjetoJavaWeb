@@ -8,19 +8,20 @@
    
     String email = request.getParameter("email");
     String senha = request.getParameter("senha");
-    
+  
     //Envia os valores para o Dao e recebe o resultado da consulta
     
  	
  		
  	
    Administrador adm = AdministradorDao.logar(email, senha);
-    
+ 
+  
     //Verifica se algum usuário foi encontrado
-    if(adm !=null){
+    if(adm != null && !adm.getEmail().isEmpty() && senha != null && !adm.getSenha().isEmpty()){
         //Cria sessão e redireciona para a tela principal
-        request.getSession().setAttribute("nome", adm.getNome());
-        response.sendRedirect("./principal/principal.jsp");
+  		 request.getSession().setAttribute("nome",adm.getNome());
+      	 response.sendRedirect("./principal/principal.jsp");
         
     }else{
     	response.sendRedirect("index.jsp");  

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author 
  */
 
-@WebServlet("/Login")/*Mapeamento da URL que vem da tela */
+@WebServlet("/ServletLogin")/*Mapeamento da URL que vem da tela */
 public class Login extends HttpServlet {
 
     /**

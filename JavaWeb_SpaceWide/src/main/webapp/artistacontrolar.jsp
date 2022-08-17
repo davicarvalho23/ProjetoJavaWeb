@@ -11,9 +11,7 @@
         <link href="css/padrao.css" rel="stylesheet" type="text/css"/>
         <title>Lista de Usuários</title>
     </head>
-    <body>
-            <%@include file="acessoadmin.jsp"%>
-            
+    <body>      
             <div class="topnav">
                 <%@include file="menu.jsp"%>
             </div>

@@ -21,7 +21,6 @@
             com alta qualidade , já contamos na nossa comunidade<br>
             uma grande quantidade de artistas com diversos tipos de artes digitais </p>
 
-                <button class="cn"><a href="/html/cadastrar.html">Junte-se</a></button>
 
              <div class="form">
              
@@ -30,7 +29,7 @@
                     <input type="email" name="email" placeholder="Email...">
                     <input type="password" name="senha" placeholder="Senha...">
                     <input type="submit" value="Entrar" >
-                    ${msg};
+                  	${msg}
                     </form>
                  
               

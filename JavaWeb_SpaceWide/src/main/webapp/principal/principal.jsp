@@ -10,11 +10,11 @@
   
 </head>
 <body>
-    
+     	<%@include file="../acesso.jsp"%>
   <header>
       
     <nav class="navbar">
-       			<%@include file=../menu.jsp"%>
+       	<%@include file="../menu.jsp"%>
       <div class="left">
         <div class="logo">
           <a href="index.jsp">

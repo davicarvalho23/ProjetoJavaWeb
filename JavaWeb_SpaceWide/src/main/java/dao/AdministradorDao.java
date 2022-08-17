@@ -48,7 +48,7 @@ public static Administrador logar(String email, String senha){
 		try{
 		Connection con = getConnection();
 		PreparedStatement ps = (PreparedStatement) con.prepareStatement("select * from administrador where email=?");
-		ps.setString(ar.getId(), email);
+		ps.setString(1, email);
 		ResultSet rs = ps.executeQuery();
 		//Verifica se a consulta retornou resultado
 		if (rs.next()) {       
