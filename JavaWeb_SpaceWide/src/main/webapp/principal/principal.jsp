@@ -1,55 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css" integrity="sha256-ZKOGvp7YVwX26g2d0ooDvbSBQSEiIi4Bd9FuK+12Zk0=" crossorigin="anonymous" />
-  <link rel="stylesheet" href="../css/main.css">
-  <title>Space Wide </title>
+	
+  <link rel="stylesheet" href="../css/main.css"/>
+    <title>Space Wide</title>
+  </head>
+  <body>
   
-</head>
-<body>
-     	<%@include file="../acesso.jsp"%>
-  <header>
-      
-    <nav class="navbar">
-       	<%@include file="../menu.jsp"%>
-      <div class="left">
-        <div class="logo">
-          <a href="index.jsp">
-            <h1 class="logo">Space<span>Wide</span></h1>
-          </a>
-        </div>
-        <div class="nav-search-form">
-        </div>
-      </div>
+      <%@include file="../acesso.jsp" %>
+ 	   
+ 	<div class="menu-bar">
+ 
+      <h1 class="logo">Space<span>Wide</span></h1>
+      <ul>
+        <li><a href="#">Obra_artística<i class="fas fa-caret-down"></i></a>
 
-    </nav>
-  </header>
+            <div class="dropdown-menu">
+                <ul>
+                  <li><a href="#">Gerenciar Obras</a></li>
+                  <li><a href="#">Relatório das Obras</a></li>
+                </ul>
+              </div>
+         <li><a href="#">Cliente<i class="fas fa-caret-down"></i></a>
 
-  <section class="hero">
-    <div class="hero-container">
-      <div class="hero-content">
-        <h1>Explore o inexplorado.</h1>
-        <p>
-          Site em desenvolvimento. <br>
-          Provérbios 10:20 Prata escolhida é a língua do justo; o coração dos perversos é de nenhum valor. <br>
-          21 Os lábios do justo apascentam a muitos, mas os tolos morrem por falta de entendimento.
-        </p>
-  
-    <div class="hero-overlay"></div>
-  </section>     
+            <div class="dropdown-menu">
+                <ul>
+                  <li><a href="#">Gerenciar Clientes</a></li>
+                  <li><a href="#">Relatório de Clientes</a></li>
+                </ul>
+              </div>
+              <li><a href="#">Artista<i class="fas fa-caret-down"></i></a>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" integrity="sha256-bIPvSCQ7+G5GbIXDt2B+9AMpCmFtxTVLU+aWAIPzL8I=" crossorigin="anonymous"></script>
-  <script>
-    $('#gallery').justifiedGallery({
-      rowHeight : 200,
-      lastRow : 'nojustify',
-      margins : 12
-    });
-  </script>
-</body>
+            <div class="dropdown-menu">
+                <ul>
+                  <li><a href="../artistacontrolar.jsp?pag=1">Gerenciar Artistas</a></li>
+                  <li><a href="#">Relatório de Artistas</a></li>
+                </ul>
+              </div>
+           <li><a href="#"><%=request.getSession().getAttribute("nome")%> <i class="fas fa-caret-down"></i></a>
+
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="../deslogar.jsp">Sair</a></li>
+            
+                </ul>
+              </div>
+      </ul>
+    </div>
+  </body>
+
 </html>
-

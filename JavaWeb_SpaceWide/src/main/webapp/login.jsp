@@ -18,9 +18,9 @@
  
   
     //Verifica se algum usuário foi encontrado
-    if(adm != null && !adm.getEmail().isEmpty() && senha != null && !adm.getSenha().isEmpty()){
+    if(adm != null){
         //Cria sessão e redireciona para a tela principal
-  		 request.getSession().setAttribute("nome",adm.getNome());
+  	request.getSession().setAttribute("nome",adm.getNome());
       	 response.sendRedirect("./principal/principal.jsp");
         
     }else{

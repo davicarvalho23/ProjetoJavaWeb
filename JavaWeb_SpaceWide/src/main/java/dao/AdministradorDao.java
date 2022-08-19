@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.util.Calendar;
 
 import classes.Administrador;
+import java.sql.SQLException;
 
 
 public class AdministradorDao {
@@ -19,7 +20,7 @@ public class AdministradorDao {
 	       
 		  Administrador admin = null;     
 		try{
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT nome, email, senha, \"administrador\" FROM administrador WHERE id = ?");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT * FROM administrador WHERE id = ?");
 	        ResultSet rs = ps.executeQuery();
 	    
 	        while(rs.next()){
@@ -43,38 +44,57 @@ public class AdministradorDao {
 	  
 	  
 	    
-public static Administrador logar(String email, String senha){ 
-      Administrador ar = new Administrador();    
-		try{
+public static Administrador logar(String email, String senha) {
+      Administrador adm = new Administrador();    
+      
+		    try {
 		Connection con = getConnection();
 		PreparedStatement ps = (PreparedStatement) con.prepareStatement("select * from administrador where email=?");
 		ps.setString(1, email);
 		ResultSet rs = ps.executeQuery();
 		//Verifica se a consulta retornou resultado
 		if (rs.next()) {       
-		      if(rs.getString("estado").equals("ativo")){
-		          if(rs.getString("senha").equals(senha)){
-		              ar.setId(rs.getInt("id"));
-		             ar.setNome(rs.getString("nome"));
-		              ar.setEmail(rs.getString("email"));         
-		              ar.setSenha(rs.getString("senha"));   
-		       
-		          }else{
-		              //Senha errada
-		              ar = null;
-		          }
-		      }else{
-		         //Usuário Inativo
-		         ar = null;     
-		      }
+         
+                 if(rs.getString("estado").equals("ativo")){
+                     if(rs.getString("senha").equals(senha)){
+                         adm.setId(rs.getInt("id"));
+                         adm.setNome(rs.getString("nome"));
+                         adm.setEmail(rs.getString("email"));
+                         adm.setSenha(rs.getString("senha"));
+                         
+                     }else{
+                         //Senha errada
+                         adm = null;
+                     }
+                 }else{
+                     //Usuï¿½rio Inativo
+                     adm = null;
+                 }
+            
 		}else{
-		  // E-mail não existe
-		 ar = null; 
+		  // E-mail nï¿½o existe
+		adm = null; 
+                        }
+                }catch(Exception erro){
+       System.out.println(erro); }
+          return adm;
+    }      
+            public static int editarAdm(Administrador administrador){
+	       int status = 0;  
+	   try{
+	        Connection con = getConnection();
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE administrador SET nome=?, email=? WHERE id=?");
+	        ps.setString(1, administrador.getNome());
+	        ps.setString(2, administrador.getEmail());
+                ps.setString(3, administrador.getSenha());
+	        ps.setInt(4, administrador.getId());         
+	        status = ps.executeUpdate();
+	    }catch(Exception erro){
+	        System.out.println(erro);
+	    }      
+	       return status;
+	   }
+              
 		}
-		}catch(Exception erro){
-		erro.printStackTrace();
-		}      
-		return ar;
-		}
-	  
-}	
+
+	

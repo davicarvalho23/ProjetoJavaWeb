@@ -33,8 +33,7 @@
                     </form>
                  
               
-                    <p class="link">Não possui uma conta ?
-                    Crie uma</a><a href="#"> aqui</a></p>  
+                    <p class="link">Acesso para administrador.</p>  
              </div>
         </div>
     </div>

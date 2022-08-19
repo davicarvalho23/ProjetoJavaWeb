@@ -20,7 +20,7 @@ public class ArtistaDao {
 		  Artista artista = null;     
 		try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT nome, nome_artistico, email, senha, \"artista\" AS acesso FROM artista WHERE id = ?");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT nome, nome_artistico, email, senha, \"artista\" FROM artista WHERE id = ?");
 	        ResultSet rs = ps.executeQuery();
 	    
 	        while(rs.next()){
@@ -69,7 +69,7 @@ public class ArtistaDao {
 	            Artista artista = new Artista();
 	            artista.setId(rs.getInt("id"));
 	            artista.setNome(rs.getString("nome"));
-	            artista.setNome(rs.getString("nome_artistico"));
+	            artista.setNome_artistico(rs.getString("nome_artistico"));
 	            artista.setEmail(rs.getString("email"));         
 	            artista.setSenha(rs.getString("senha"));   
 	            artista.setEstado(rs.getString("estado"));
@@ -124,13 +124,13 @@ public class ArtistaDao {
 	        
 	       try{
 	            Connection con = getConnection();
-	            PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT count(*) AS ADM FROM artista where estado = 'ativo'");
+	            PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT count(*) FROM artista where estado = 'ativo'");
 	            ResultSet rs = ps.executeQuery();
 	            while(rs.next()){
 	                valores[0] = rs.getInt("ADM");
 	            }   
 	 
-	            ps = (PreparedStatement) con.prepareStatement("SELECT count(*) AS Comum FROM artista where estado = 'ativo'");
+	            ps = (PreparedStatement) con.prepareStatement("SELECT count(*) FROM artista where estado = 'ativo'");
 	            rs = ps.executeQuery();
 	            while(rs.next()){
 	                valores[1] = rs.getInt("Comum");

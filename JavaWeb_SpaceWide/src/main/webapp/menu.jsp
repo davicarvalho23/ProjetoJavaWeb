@@ -2,26 +2,42 @@
 <meta charset="utf-8">
 </head>
 <body>
-<ul>
-		
-  <li><a href="principal.jsp">Principal</a></li>
-  <li><a href="#">Artistas</a></li>
-            
-<li class='dropdown'><a href='javascript:void(0)' class='dropbtn'>Usuários</a>
-<div class='dropdown-content'><a href='usuariosrelatorio.jsp'>Relatório de Usuários</a><a href='usuarioscontrolar.jsp?pag=1'>Controlar Usuários</a><a href='usuariocadastrarform.jsp'>Cadastrar Usuário</a></div></li>
-            
-   
-  
+ <div class="menu-bar">
+ 
+      <h1 class="logo">Space<span>Wide</span></h1>
+      <ul>
+        <li><a href="#">Obra_artística<i class="fas fa-caret-down"></i></a>
 
- <li class="dropdown" style="float:right">
-     <a href="javascript:void(0)" class="dropbtn">Usuário: <%=request.getSession().getAttribute("nome")%></a>
-    <div class="dropdown-content">
-      <a href="#">Alterar Dados</a>
-      <a href="#">Alterar Senha</a>
-      <a href="deslogar.jsp">Deslogar</a>
+            <div class="dropdown-menu">
+                <ul>
+                  <li><a href="#">Gerenciar Obras</a></li>
+                  <li><a href="#">Relatório das Obras</a></li>
+                </ul>
+              </div>
+         <li><a href="#">Cliente<i class="fas fa-caret-down"></i></a>
+
+            <div class="dropdown-menu">
+                <ul>
+                  <li><a href="#">Gerenciar Clientes</a></li>
+                  <li><a href="#">Relatório de Clientes</a></li>
+                </ul>
+              </div>
+              <li><a href="#">Artista<i class="fas fa-caret-down"></i></a>
+
+            <div class="dropdown-menu">
+                <ul>
+                  <li><a href="artistacontrolar.jsp?pag=1">Gerenciar Artistas</a></li>
+                  <li><a href="#">Relatório de Artistas</a></li>
+                </ul>
+              </div>
+           <li><a href="#"><%=request.getSession().getAttribute("nome")%> <i class="fas fa-caret-down"></i></a>
+
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a href="deslogar.jsp">Sair</a></li>
+            
+                </ul>
+              </div>
+      </ul>
     </div>
-  </li>
-
-</ul>
-
 </body>
