@@ -5,6 +5,7 @@
 <head>
    
     <title>Login</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.svg"/>   
     <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
@@ -29,7 +30,7 @@
                     <input type="email" name="email" placeholder="Email...">
                     <input type="password" name="senha" placeholder="Senha...">
                     <input type="submit" value="Entrar" >
-                  	${msg}
+                  	<p>${msg}</p>
                     </form>
                  
               

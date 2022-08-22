@@ -31,7 +31,7 @@
                 int id = Integer.parseInt(pag);
                 
                 //Quantidade de Registros da Página
-                int total = 5;
+                int total = 1;
                 
                 if(id!=1){
                     id = id -1;
@@ -53,7 +53,7 @@
             %>
         
             <h3>Lista de Usuários</h3>
-            <table>
+            <table style="margin-bottom:10px;">
             <tr><th>Id</th><th>Nome</th><th>Nome artístico</th><th>Email</th><th>Senha</th><th colspan="2">Estado</th><th colspan="3">Ações</th></tr>
                 <c:forEach items="${list}" var="artista">
                 <tr>
@@ -68,25 +68,27 @@
                     
                     
                     <td><a href="Artistabloquear.jsp?id=${artista.getId()}&status=${artista.getEstado()}"> <i class="material-icons right">lock</i></a></td>
-                    <td><a href="Artistaexcluir.jsp?id=${artista.getId()}"> <i class=" material-icons left">delete</i></a></td>            
-                    <td><a href="Artistaeditarform.jsp?id=${artista.getId()}"><i class="material-icons left">model_edit</i></a></td>
+                    <td><a href="Artistaexcluir.jsp?id=${artista.getId()}"><i class=" material-icons left">delete</i></a></td>            
+                    <td><a href="editar/Artistaeditarform.jsp?id=${artista.getId()}"><i class="material-icons left">model_edit</i></a></td>
                 </tr>	
                 </c:forEach>
             </table>
-                <div class="pagination">
+                 
+                     <ul class="pagination">
                     <% for(i=1; i <= contagem; i++) {%>
-                      <ul class="pagination">
+                    
+                    
                       
-                        <li class="disabled"><a href="artistacontrolar.jsp?pag=<%=i%>"><i class="material-icons">chevron_left</i></a></li>
                         <li class="active" style="background-color:#008ddd;"><a href="artistacontrolar.jsp?pag=<%=i%>"><%=i%></a></li>
-   					 </ul>
-    				<!-- <a href="artistacontrolar.jsp?pag=<%=i%>"><%=i%></a> -->
-                    <% } %>   
+   					
+    				
+                    <% } %>  
+                     </ul> 
+                     <a href="artistacadastrarform.jsp" style="position: right;"><i class="material-icons">add_box</i></a>
                 </div>   
-            <a href="artistacadastrarform.jsp"><i class="material-icons">add_box</i></a>
+            
           
-    </div>
-
+          
     <div class="container footer">
         <%@include file="rodape.jsp"%>
     </div>

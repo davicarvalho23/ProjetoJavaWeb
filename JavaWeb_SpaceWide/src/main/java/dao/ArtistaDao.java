@@ -20,11 +20,12 @@ public class ArtistaDao {
 		  Artista artista = null;     
 		try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT nome, nome_artistico, email, senha, \"artista\" FROM artista WHERE id = ?");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT * FROM artista WHERE id = ?");
+	        ps.setInt(1, id);
 	        ResultSet rs = ps.executeQuery();
 	    
 	        while(rs.next()){
-	 	       Calendar cl;
+	 	       Calendar cl = Calendar.getInstance();
 	 	       
 	        	artista = new Artista();
 	            artista.setId(rs.getInt("id"));
@@ -33,7 +34,7 @@ public class ArtistaDao {
 	            artista.setEmail(rs.getString("email"));         
 	            artista.setSenha(rs.getString("senha"));  
 	            artista.setEstado(rs.getString("estado"));
-               
+	         //   cl.setTime(null);
 	
 	        }
 	   }catch(Exception erro){
@@ -45,13 +46,15 @@ public class ArtistaDao {
 	    
 	   public static int editarArtista(Artista artista){
 	       int status = 0;  
+	       
 	   try{
 	        Connection con = getConnection();
 	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE artista SET nome=?, email=?, nome_artistico=? WHERE id=?");
+
 	        ps.setString(1, artista.getNome());
-                ps.setString(2, artista.getNome_artistico());
+            ps.setString(2, artista.getNome_artistico());
 	        ps.setString(3, artista.getEmail());
-	        ps.setInt(4, artista.getId());         
+	        ps.setInt(4, artista.getId());
 	        status = ps.executeUpdate();
 	    }catch(Exception erro){
 	        System.out.println(erro);
@@ -164,8 +167,9 @@ public class ArtistaDao {
 	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO artista(NOME, NOME_ARTISTICO, EMAIL, SENHA) VALUES(?,?,?,?,?)");
 	        ps.setString(1, artista.getNome());
 	        ps.setString(2, artista.getNome_artistico());
-	        ps.setString(4, artista.getEmail());
+	        ps.setString(3, artista.getEmail());
 	        ps.setString(5, artista.getSenha());  
+	       
 	        status = ps.executeUpdate();
 	    }catch(Exception erro){
 	        System.out.println(erro);
