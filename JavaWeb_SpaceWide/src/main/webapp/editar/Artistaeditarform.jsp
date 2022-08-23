@@ -23,27 +23,26 @@
     </div>
 
     <div class='profiler-form'>
-        <form class='form' action='artistaeditar.jsp' method='post' enctype='multipart/form-data'>
-
+        <form class='form' action='artistaeditar.jsp' method='post'>
             <div class='input-group'>
-
-	         
+            
                 <div class='input-field'>
                     <label><i class='fas fa-user'></i></label>
                         <input type="hidden" name="id" value="<%=ar.getId()%>">
                     <input type='text' name='nome' value="<%=ar.getNome()%>">
                 </div>
-		  <div class='input-field'>
+                
+	  			<div class='input-field'>
                     <label><i class='fas fa-user'></i></label>
                     <input type='text' name='nome_artistico' value="<%=ar.getNome_artistico()%>">
                 </div>
-				
+                
 				<div class='input-field'>
                     <label><i class='fas fa-user'></i></label>
-                    <input type='text' name='nome_artistico' value="<%=ar.getEmail()%>">
+                    <input type='text' name='email' value="<%=ar.getEmail()%>">
                 </div>
 				
-                <button type='submit' class='submit-btn' name='submit'>Editar</button>
+                <button type='submit' class='submit-btn'>Editar</button>
             </div>
 
         </form>

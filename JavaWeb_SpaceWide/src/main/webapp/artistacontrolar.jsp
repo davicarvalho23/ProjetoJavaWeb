@@ -2,7 +2,7 @@
 <%@ page import="dao.Dao, dao.ArtistaDao, classes.Artista, java.util.*"%>
 
 <!DOCTYPE html>
-<html      xmlns:th="http://thymeleaf.org"
+<html xmlns:th="http://thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	    <head>
 	        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -19,7 +19,7 @@
 		      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
 		  	
 	  
-	        <title>Lista de Usuários</title>
+	        <title>Lista de Artistas</title>
     </head>
     <body>    
     <%@include file="acesso.jsp"%> 
@@ -31,7 +31,7 @@
                 int id = Integer.parseInt(pag);
                 
                 //Quantidade de Registros da Página
-                int total = 1;
+                int total = 3;
                 
                 if(id!=1){
                     id = id -1;
@@ -52,7 +52,7 @@
 
             %>
         
-            <h3>Lista de Usuários</h3>
+            <h4>Lista de Artistas</h4>
             <table style="margin-bottom:10px;">
             <tr><th>Id</th><th>Nome</th><th>Nome artístico</th><th>Email</th><th>Senha</th><th colspan="2">Estado</th><th colspan="3">Ações</th></tr>
                 <c:forEach items="${list}" var="artista">
@@ -67,9 +67,9 @@
                     
                     
                     
-                    <td><a href="Artistabloquear.jsp?id=${artista.getId()}&status=${artista.getEstado()}"> <i class="material-icons right">lock</i></a></td>
-                    <td><a href="Artistaexcluir.jsp?id=${artista.getId()}"><i class=" material-icons left">delete</i></a></td>            
-                    <td><a href="editar/Artistaeditarform.jsp?id=${artista.getId()}"><i class="material-icons left">model_edit</i></a></td>
+                    <td><a href="editar/Artistabloquear.jsp?id=${artista.getId()}&estado=${artista.getEstado()}"> <i class="material-icons right">lock</i></a></td>
+                    <td><a href="editar/Artistaexcluir.jsp?id=${artista.getId()}"><i class=" material-icons right">delete</i></a></td>            
+                    <td><a href="editar/Artistaeditarform.jsp?id=${artista.getId()}"><i class="material-icons right">create</i></a></td>
                 </tr>	
                 </c:forEach>
             </table>
@@ -84,12 +84,13 @@
     				
                     <% } %>  
                      </ul> 
-                     <a href="artistacadastrarform.jsp" style="position: right;"><i class="material-icons">add_box</i></a>
+                 
                 </div>   
             
           
           
     <div class="container footer">
+    
         <%@include file="rodape.jsp"%>
     </div>
     </body>

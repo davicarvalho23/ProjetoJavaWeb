@@ -13,6 +13,7 @@ import classes.Artista;
 
 
 
+
 public class ArtistaDao {
 
 	  public static Artista getArtistaById(int id){
@@ -176,6 +177,34 @@ public class ArtistaDao {
 	    }      
 	       return status;
 	   }
+	   
+	   
+	   public static int bloquearArtista(Artista artista){
+	       int status = 0;  
+	       String estadoartista = "";
+	       
+	       if(artista.getEstado().equalsIgnoreCase("ativo")){
+	        estadoartista = "inativo";   
+	       }else if(artista.getEstado().equalsIgnoreCase("inativo"))
+	       {
+	        estadoartista = "suspenso";
+	       }else if (artista.getEstado().equalsIgnoreCase("suspenso")) {
+	    	   estadoartista = "banido";
+	       }else {
+	    	   estadoartista = "ativo";
+	       }
+	        try{
+	             Connection con = getConnection();
+	             PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE artista SET estado=? WHERE id=?");
+	             ps.setString(1, estadoartista);
+	             ps.setInt(2, artista.getId());         
+	             status = ps.executeUpdate();
+	         }catch(Exception erro){
+	             System.out.println(erro);
+	         }      
+	            return status;
+	   }
+	   
 	    
 	}
 

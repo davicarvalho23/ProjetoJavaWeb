@@ -36,6 +36,6 @@
     </div>
    <h1 class="second-four">4</h1>
 </div>
-    <p class="wrong-para"><a href="../principal.jsp">Voltar para a pagina inicial!!!</a></p>
+    <p class="wrong-para"><a href="./principal/principal.jsp">Voltar para a pagina inicial!!!</a></p>
 </body>
 </html>

@@ -4,6 +4,6 @@
  
        //Se não há sessão, usuário não logou, retorna para o login
         if (usuario == null) {
-            response.sendRedirect("../index.jsp");
+            response.sendRedirect("index.jsp");
         }
     %>
