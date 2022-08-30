@@ -26,7 +26,7 @@ public class ArtistaDao {
 	        ResultSet rs = ps.executeQuery();
 	    
 	        while(rs.next()){
-	 	       Calendar cl = Calendar.getInstance();
+	 	     
 	 	       
 	        	artista = new Artista();
 	            artista.setId(rs.getInt("id"));
@@ -35,8 +35,7 @@ public class ArtistaDao {
 	            artista.setEmail(rs.getString("email"));         
 	            artista.setSenha(rs.getString("senha"));  
 	            artista.setEstado(rs.getString("estado"));
-	         //   cl.setTime(null);
-	
+			    
 	        }
 	   }catch(Exception erro){
 	        System.out.println(erro);
@@ -44,24 +43,6 @@ public class ArtistaDao {
 	        return artista;
 	    }
 
-	    
-	   public static int editarArtista(Artista artista){
-	       int status = 0;  
-	       
-	   try{
-	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE artista SET nome=?, email=?, nome_artistico=? WHERE id=?");
-
-	        ps.setString(1, artista.getNome());
-            ps.setString(2, artista.getNome_artistico());
-	        ps.setString(3, artista.getEmail());
-	        ps.setInt(4, artista.getId());
-	        status = ps.executeUpdate();
-	    }catch(Exception erro){
-	        System.out.println(erro);
-	    }      
-	       return status;
-	   }
 	    
 	    public static List<Artista> getArtista(int inicio, int total) {
 	    List<Artista> list = new ArrayList<Artista>();
@@ -77,7 +58,8 @@ public class ArtistaDao {
 	            artista.setEmail(rs.getString("email"));         
 	            artista.setSenha(rs.getString("senha"));   
 	            artista.setEstado(rs.getString("estado"));
-	            
+	            artista.setData_de_criacao(rs.getTimestamp("data_de_criacao"));
+	            artista.setData_da_ultima_modificacao(rs.getTimestamp("data_da_ultima_modificacao"));
 	            list.add(artista);
 	        }       
 	    }catch(Exception erro){
@@ -125,33 +107,35 @@ public class ArtistaDao {
 	        public static int[] getRelatorioArtista() {
 
 	int[] valores = {10, 20, 30, 40};
-	        
-	       try{
-	            Connection con = getConnection();
-	            PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT count(*) FROM artista where estado = 'ativo'");
-	            ResultSet rs = ps.executeQuery();
-	            while(rs.next()){
-	                valores[0] = rs.getInt("ADM");
-	            }   
-	 
-	            ps = (PreparedStatement) con.prepareStatement("SELECT count(*) FROM artista where estado = 'ativo'");
-	            rs = ps.executeQuery();
-	            while(rs.next()){
-	                valores[1] = rs.getInt("Comum");
-	            }            
-	            
-	        }catch(Exception erro){
-	            System.out.println(erro);
-	        }
-	        return valores;
-	    }
+	  try{
+          Connection con = getConnection();
+          PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT count(*) FROM artista where estado = 'ativo'");
+          ResultSet rs = ps.executeQuery();
+          while(rs.next()){
+              valores[0] = rs.getInt("Ativo");
+          }   
+
+          ps = (PreparedStatement) con.prepareStatement("SELECT count(*) FROM artista where estado = 'inativo'");
+          rs = ps.executeQuery();
+          while(rs.next()){
+              valores[1] = rs.getInt("Inativo");
+          }            
+          
+      }catch(Exception erro){
+          System.out.println(erro);
+      }
+      return valores;
+  }
 	        	        
 	    
 	    public static int excluirArtista(Artista artista){
 	       int status = 0;  
 	        try{
 	             Connection con = getConnection();
-	             PreparedStatement ps = (PreparedStatement) con.prepareStatement("DELETE FROM artista WHERE id=?");
+	             PreparedStatement ps = (PreparedStatement) con.prepareStatement("DELETE FROM artista, obras_artistica\r\n"
+	             		+ "USING artista\r\n"
+	             		+ "INNER JOIN obra_artistica\r\n"
+	             		+ "WHERE obra_artistica.id_artista = artista.id AND artista.id = ?;");
 	             ps.setInt(1, artista.getId());         
 	             status = ps.executeUpdate();
 	         }catch(Exception erro){
@@ -161,23 +145,6 @@ public class ArtistaDao {
 	   }
 	    
 	    
-	   public static int cadastrarArtista(Artista artista){
-	       int status = 0;  
-	   try{
-	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO artista(NOME, NOME_ARTISTICO, EMAIL, SENHA) VALUES(?,?,?,?,?)");
-	        ps.setString(1, artista.getNome());
-	        ps.setString(2, artista.getNome_artistico());
-	        ps.setString(3, artista.getEmail());
-	        ps.setString(5, artista.getSenha());  
-	       
-	        status = ps.executeUpdate();
-	    }catch(Exception erro){
-	        System.out.println(erro);
-	    }      
-	       return status;
-	   }
-	   
 	   
 	   public static int bloquearArtista(Artista artista){
 	       int status = 0;  

@@ -54,7 +54,8 @@
         
             <h4>Lista de Artistas</h4>
             <table style="margin-bottom:10px;">
-            <tr><th>Id</th><th>Nome</th><th>Nome artístico</th><th>Email</th><th>Senha</th><th colspan="2">Estado</th><th colspan="3">Ações</th></tr>
+            <tr><th>Id</th><th>Nome</th><th>Nome artístico</th><th>Email</th><th>Senha</th><th colspan="">Estado</th><th colspan="">Data de Criação</th><th colspan="">Data de ultima modificação</th>
+            <th colspan="2">Ações</th></tr>
                 <c:forEach items="${list}" var="artista">
                 <tr>
                     <td>${artista.getId()}</td>
@@ -63,13 +64,11 @@
                     <td>${artista.getEmail()}</td>            
                     <td>${artista.getSenha()}</td>    
                     <td>${artista.getEstado()}</td>
+                    <td>${artista.getData_de_criacao()}</td>
+                    <td>${artista.getData_da_ultima_modificacao()}
+                    <td><a href="editar/Artistabloquear.jsp?id=${artista.getId()}&estado=${artista.getEstado()}"> <i class="material-icons middle">lock</i></a></td>
+                    <td><a href="editar/Artistaexcluir.jsp?id=${artista.getId()}"><i class="material-icons middle">delete</i></a></td>            
                     
-                    
-                    
-                    
-                    <td><a href="editar/Artistabloquear.jsp?id=${artista.getId()}&estado=${artista.getEstado()}"> <i class="material-icons right">lock</i></a></td>
-                    <td><a href="editar/Artistaexcluir.jsp?id=${artista.getId()}"><i class=" material-icons right">delete</i></a></td>            
-                    <td><a href="editar/Artistaeditarform.jsp?id=${artista.getId()}"><i class="material-icons right">create</i></a></td>
                 </tr>	
                 </c:forEach>
             </table>

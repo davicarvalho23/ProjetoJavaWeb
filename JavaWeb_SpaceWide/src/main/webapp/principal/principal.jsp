@@ -24,7 +24,7 @@
 
             <div class="dropdown-menu">
                 <ul>
-                  <li><a href="#">Gerenciar Clientes</a></li>
+                  <li><a href="../clientescontrolar.jsp?pag=1">Gerenciar Clientes</a></li>
                   <li><a href="#">Relatório de Clientes</a></li>
                 </ul>
               </div>

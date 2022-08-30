@@ -1,6 +1,7 @@
 package classes;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class Cliente {
 private int id; 
@@ -12,16 +13,17 @@ private String acesso;
 private Timestamp data_de_criacao;
 private Timestamp data_da_ultima_modificacao;
 
+SimpleDateFormat dateFormat = new SimpleDateFormat("M/dd/yyyy");
 
 
-public Timestamp getData_de_criacao() {
-	return data_de_criacao;
+public String getData_de_criacao() {
+	return String.format("%1$TD %1$TT",data_de_criacao);
 }
 public void setData_de_criacao(Timestamp data_de_criacao) {
 	this.data_de_criacao = data_de_criacao;
 }
-public Timestamp getData_da_ultima_modificacao() {
-	return data_da_ultima_modificacao;
+public String getData_da_ultima_modificacao() {
+	return String.format("%1$TD %1$TT",data_da_ultima_modificacao);
 }
 public void setData_da_ultima_modificacao(Timestamp data_da_ultima_modificacao) {
 	this.data_da_ultima_modificacao = data_da_ultima_modificacao;

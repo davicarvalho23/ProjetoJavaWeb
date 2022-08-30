@@ -7,6 +7,7 @@ package dao;
 
 
 import classes.Obra_artistica; 
+
 import static dao.Dao.getConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +23,7 @@ public class Obra_ArtisticaDao {
 	       Obra_artistica obra = null;      
 	    try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("select * from obra_artistica where id_obra_artistica=?");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("select * from obra_artistica where id=?");
 	        ps.setInt(1, id);
 	        ResultSet rs = ps.executeQuery();
 	        while(rs.next()){
@@ -45,7 +46,7 @@ public class Obra_ArtisticaDao {
 	       int status = 0;  
 	   try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE obra_artistica SET titulo=?, descricao=?, localizacao_da_imagem  WHERE id_cliente=?");
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE obra_artistica SET titulo=?, descricao=?, localizacao_da_imagem  WHERE id=?");
 	        ps.setString(1, obra_artistica.getTitulo());
 	        ps.setString(2, obra_artistica.getDescricao());
             ps.setString(3, obra_artistica.getLocalizacao_da_imagem());
@@ -61,7 +62,7 @@ public class Obra_ArtisticaDao {
 	    List<Obra_artistica> list = new ArrayList<>();
 	    try{
 	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT * FROM obra_artistica ORDER BY id_obra_artistica LIMIT " + (inicio - 1) + " ," + total);
+	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT * FROM obra_artistica ORDER BY id LIMIT " + (inicio - 1) + " ," + total);
 	        ResultSet rs = ps.executeQuery();
 	        while(rs.next()){
 	            Obra_artistica obra = new Obra_artistica();
@@ -115,23 +116,23 @@ public class Obra_ArtisticaDao {
 
 	int[] valores = {10, 20, 30, 40};
 	        
-	        /*try{
+	        try{
 	            Connection con = getConnection();
-	            PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT count(*) AS ADM FROM cliente where Acesso = 'Admin'");
+	            PreparedStatement ps = (PreparedStatement) con.prepareStatement("SELECT count(*) FROM cliente ");
 	            ResultSet rs = ps.executeQuery();
 	            while(rs.next()){
 	                valores[0] = rs.getInt("ADM");
 	            }   
 	 
-	            ps = (PreparedStatement) con.prepareStatement("SELECT count(*) AS Comum FROM cliente where Acesso = 'Comum'");
+	            ps = (PreparedStatement) con.prepareStatement("SELECT count(*) FROM cliente where");
 	            rs = ps.executeQuery();
 	            while(rs.next()){
 	                valores[1] = rs.getInt("Comum");
 	            }            
-	            1
+	            
 	        }catch(Exception erro){
 	            System.out.println(erro);
-	        }**/
+	        }
 	        return valores;
 	    }
 	        
@@ -151,20 +152,4 @@ public class Obra_ArtisticaDao {
 	            return status;
 	   }
 	    
-	    
-	   public static int cadastrarcliente(Obra_artistica obra){
-	       int status = 0;  
-	   try{
-	        Connection con = getConnection();
-	        PreparedStatement ps = (PreparedStatement) con.prepareStatement("INSERT INTO ARTISTA(TITULO, SUBTITULO, DESCRICAO) VALUES(?,?,?)");
-	        ps.setString(1, obra.getTitulo());
-	        ps.setString(2, obra.getDescricao());
-                ps.setInt(3, obra.getId_artista());
-	        ps.setInt(4, obra.getId());
-	        status = ps.executeUpdate();
-	    }catch(Exception erro){
-	        System.out.println(erro);
-	    }      
-	       return status;
-	   }
 }
