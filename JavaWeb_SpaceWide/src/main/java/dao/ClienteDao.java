@@ -5,12 +5,9 @@ import static dao.Dao.getConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
-import classes.Artista;
 import classes.Cliente;
 
 public class ClienteDao {
@@ -60,8 +57,6 @@ public class ClienteDao {
 	        ResultSet rs = ps.executeQuery();
 	        while(rs.next()){
 	            Cliente cliente = new Cliente();
-	            Calendar cal = Calendar.getInstance();
-	            Calendar g;
 	            cliente.setId(rs.getInt("id"));
 	            cliente.setNome(rs.getString("nome"));
 	            cliente.setEmail(rs.getString("email"));         

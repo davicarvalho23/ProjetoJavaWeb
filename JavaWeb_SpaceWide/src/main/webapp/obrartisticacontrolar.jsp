@@ -30,7 +30,7 @@
                 String pag = request.getParameter("pag");
                 int id = Integer.parseInt(pag);
                 
-                //Quantidade de Registros da PÃ¡gina
+                //Quantidade de Registros da Página
                 int total = 3;
                 
                 if(id!=1){
@@ -54,8 +54,8 @@
         
             <h4>Lista de Clientes</h4>
             <table style="margin-bottom:10px;">
-            <tr><th>Id</th><th>Nome</th><th>Email</th><th>Senha</th><th colspan="">Estado</th><th colspan="">Data de CriaÃ§ao</th><th colspan="">Data de Ãºltima modificaÃ§Ã£o</th>
-            <th colspan="2">AÃ§Ãµes</th></tr>
+            <tr><th>Id</th><th>Nome</th><th>Email</th><th>Senha</th><th colspan="">Estado</th><th colspan="">Data de Criaçao</th><th colspan="">Data de última modificação</th>
+            <th colspan="2">Ações</th></tr>
                 <c:forEach items="${list}" var="cliente">
                 <tr>
                     <td>${cliente.getId()}</td>
