@@ -1,3 +1,5 @@
+
+
 package dao;
 
 import static dao.Dao.getConnection;
@@ -6,7 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import classes.Artista;
 
@@ -172,8 +173,45 @@ public class ArtistaDao {
 	            return status;
 	   }
 	   
+	   public static Artista logar(String email, String senha) {
+		      Artista ar = new Artista();    
+		      
+				    try {
+				Connection con = getConnection();
+				PreparedStatement ps = (PreparedStatement) con.prepareStatement("select * from artista where email=?");
+				ps.setString(1, email);
+				ResultSet rs = ps.executeQuery();
+				//Verifica se a consulta retornou resultado
+				if (rs.next()) {       
+		         
+		                 if(rs.getString("estado").equals("ativo")){
+		                     if(rs.getString("senha").equals(senha)){
+		                         ar.setId(rs.getInt("id"));
+		                         ar.setNome(rs.getString("nome"));
+		                         ar.setEmail(rs.getString("email"));
+		                         ar.setSenha(rs.getString("senha"));
+		                         ar.setAcesso(rs.getString("acesso"));
+		                     }else{
+		                         //Senha errada
+		                         ar = null;
+		                     }
+		                 }else{
+		                     //Usu�rio Inativo
+		                     ar = null;
+		                 }
+		            
+				}else{
+				  // E-mail n�o existe
+				ar = null; 
+		                        }
+		                }catch(Exception erro){
+		       System.out.println(erro); }
+		          return ar;
+		    }      
+
+
+	  
 	    
 	}
 
 
-		

@@ -7,9 +7,9 @@
 		int i = ClienteDao.excluirCliente(u);
 		
 		if(i > 0) {
-			response.sendRedirect("../clientescontrolar.jsp?pag=1");
+			response.sendRedirect("../apagarcliente.html");
 			
 		}else{
-			response.sendRedirect("../clientebloquear-erro.jsp");
+			response.sendRedirect("../clientescontrolar.jsp?pag=1");
 		}
 	%>

@@ -32,9 +32,8 @@
                     <input type="submit" value="Entrar" >
                   	<p>${msg}</p>
                     </form>
-                 
-              
-                    <p class="link">Acesso para administrador.</p>  
+                    
+    			<p class="link">Acesso para administrador.</p>  
              </div>
         </div>
     </div>

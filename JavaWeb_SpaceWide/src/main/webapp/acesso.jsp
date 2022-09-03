@@ -1,9 +1,9 @@
     <%
        //Lê dados da sessão
-       String usuario = (String) request.getSession().getAttribute("nome");
+       String acesso = (String) request.getSession().getAttribute("acesso");
  
        //Se não há sessão, usuário não logou, retorna para o login
-        if (usuario == null) {
+        if (acesso.equalsIgnoreCase("admin")) {
             response.sendRedirect("index.jsp");
         }
     %>

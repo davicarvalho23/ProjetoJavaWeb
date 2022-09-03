@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="servlet.Login, dao.Dao, dao.AdministradorDao, java.util.*"%>
+<%@ page import="servlet.Login, dao.Dao, dao.ClienteDao, dao.ArtistaDao,  java.util.*"%>
 
 
 <%
