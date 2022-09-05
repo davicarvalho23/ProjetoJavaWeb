@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="dao.Dao, dao.ClienteDao, classes.Cliente, java.util.*"%>
+<%@ page import="dao.Dao, dao.Obra_ArtisticaDao, classes.Obra_artistica, java.util.*"%>
 
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org"
@@ -19,7 +19,7 @@
 		      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
 		  	
 	  
-	        <title>Lista de Clientes</title>
+	        <title>Lista de Obras</title>
     </head>
     <body>    
     <%@include file="acesso.jsp"%> 
@@ -31,17 +31,17 @@
                 int id = Integer.parseInt(pag);
                 
                 //Quantidade de Registros da Página
-                int total = 3;
+                int total = 5;
                 
                 if(id!=1){
                     id = id -1;
                     id = id * total + 1;
                 }
                 
-                List<Cliente> list = ClienteDao.getClientes(id,total);
+                List<Obra_artistica> list = Obra_ArtisticaDao.getObra_artistica(id,total);
                 request.setAttribute("list", list);
                 
-                int contagem = ClienteDao.getContagem();
+                int contagem = Obra_ArtisticaDao.getContagem();
                 int i;
                 request.setAttribute("contagem", contagem);
                 if(contagem%total==0){
@@ -52,31 +52,33 @@
 
             %>
         
-            <h4>Lista de Clientes</h4>
-            <table style="margin-bottom:10px;">
-            <tr><th>Id</th><th>Nome</th><th>Email</th><th>Senha</th><th colspan="">Estado</th><th colspan="">Data de Criaçao</th><th colspan="">Data de última modificação</th>
+            <h4>Lista de Obra Artisticas</h4>
+             <div class="divider"></div>
+            <div class="section">
+            <table class="responsive-table">
+            <tr><th>Id</th><th>Título</th><th>Subtitulo</th><th>Localização da Imagem</th><th colspan="">Estado da Obra</th><th colspan="">Data de Criaçao</th><th colspan="">Data de última modificação</th>
             <th colspan="2">Ações</th></tr>
-                <c:forEach items="${list}" var="cliente">
+                <c:forEach items="${list}" var="obra">
                 <tr>
-                    <td>${cliente.getId()}</td>
-                    <td>${cliente.getNome()}</td>
-                    <td>${cliente.getEmail()}</td>            
-                    <td>${cliente.getSenha()}</td>    
-                    <td>${cliente.getEstado()}</td>
-                    <td style="marggin-right: 2rem;">${cliente.getData_de_criacao()}</td>
-                    <td>${cliente.getData_da_ultima_modificacao()}</td>
-                    <td><a href="editar/Clientebloquear.jsp?id=${cliente.getId()}&estado=${cliente.getEstado()}"> <i class="material-icons right">lock</i></a></td>
-                    <td><a href="editar/Clientexcluir.jsp?id=${cliente.getId()}" ><i class=" material-icons right" onclick="confirmarExcluir()">delete</i></a></td>
+                    <td>${obra.getId()}</td>
+                    <td>${obra.getTitulo()}</td>
+                    <td>${obra.getSubtitulo()}</td>            
+                    <td>${obra.getLocalizacao_da_imagem()}</td> 
+                    <td>${obra.getEstado()}</td>
+                    <td style="marggin-right: 2rem;">${obra.getData_de_criacao()}</td>
+                    <td>${obra.getData_da_ultima_modificacao()}</td>
+                    <td><a href="editar/Obrabloquear.jsp?id=${obra.getId()}&estado=${obra.getEstado()}"> <i class="material-icons right">lock</i></a></td>
+                    <td><a href="editar/Obraexcluir.jsp?id=${obra.getId()}" ><i class=" material-icons right" onclick="return confirm('Deseja deletar?');">delete</i></a></td>
                 </tr>	
                 </c:forEach>
             </table>
-                 
+                </div> 
                      <ul class="pagination">
                     <% for(i=1; i <= contagem; i++) {%>
                     
                     
                       
-                        <li class="active" style="background-color:#008ddd;"><a href="clientescontrolar.jsp?pag=<%=i%>"><%=i%></a></li>
+                        <li class="active" style="background-color:#008ddd;"><a href="obrartisticacontrolar.jsp?pag=<%=i%>"><%=i%></a></li>
    					
     				
                     <% } %>  
@@ -91,12 +93,6 @@
         <%@include file="rodape.jsp"%>
     </div>
 	  
-	    
+	    	<script type="text/javascript" src="js/materialize.min.js"></script>
     </body>
-     <script>
-			function confirmarExcluir() {
-	 		confirm("Deseja apagar?");
-				}
-			</script>
-   
 </html>

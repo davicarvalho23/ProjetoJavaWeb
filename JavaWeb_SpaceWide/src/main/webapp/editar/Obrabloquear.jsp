@@ -1,5 +1,5 @@
-<%@ page import="dao.Dao, dao.ArtistaDao"%>
-<jsp:useBean id="u" class="classes.Artista"></jsp:useBean>
+<%@ page import="dao.Dao, dao.Obra_ArtisticaDao"%>
+<jsp:useBean id="u" class="classes.Obra_artistica"></jsp:useBean>
 <jsp:setProperty property="*" name="u" />
 
     <%
@@ -13,12 +13,12 @@
     %>
 
 <%
-    int i = ArtistaDao.bloquearArtista(u);
+    int i = Obra_ArtisticaDao.bloquearObra(u);
     
     if(i>0){
-        response.sendRedirect("../artistacontrolar.jsp?pag=1");
+        response.sendRedirect("obrartisticacontrolar.jsp?pag=1");
        
     }else{
-        response.sendRedirect("artistabloquear-erro.jsp");        
+        response.sendRedirect("obrabloquear-erro.jsp");        
     }
 %>

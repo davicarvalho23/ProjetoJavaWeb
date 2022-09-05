@@ -4,12 +4,12 @@
 
 <%@include file="../acesso.jsp" %>
 	<%	
-		int i = ArtistaDao.excluirArtista(u);
+		int i = ArtistaDao.editarArtista(u);
 		
 		if(i > 0) {
 			response.sendRedirect("../artistacontrolar.jsp?pag=1");
 			
 		}else{
-			response.sendRedirect("../artistabloquear-erro.jsp");
+			response.sendRedirect("../usuariobloquear-erro.jsp");
 		}
 	%>

@@ -81,10 +81,11 @@ public class Usuario {
 	}
 
 	public void setData_da_ultima_modificacao(Timestamp data_da_ultima_modificacao) {
-		this.data_da_ultima_modificacao = data_da_ultima_modificacao;
+		this.data_da_ultima_modificacao = data_da_ultima_modificacao;	
 	}
 
 	public String getAcesso() {
+		
 		return acesso;
 	}
 

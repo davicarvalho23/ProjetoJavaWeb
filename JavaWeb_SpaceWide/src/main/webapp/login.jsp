@@ -20,9 +20,11 @@
     if(ar != null || cl != null){
     	if(ar != null){
 
+    	 request.getSession().setAttribute("acesso", ar.getAcesso());
     	 request.getSession().setAttribute("nome", ar.getNome());
       	 response.sendRedirect("./principal/principal.jsp");
     	}else{
+    		 request.getSession().setAttribute("acesso", cl.getAcesso());
     		 request.getSession().setAttribute("nome", cl.getNome());
           	 response.sendRedirect("./principal/principal.jsp");
     	}

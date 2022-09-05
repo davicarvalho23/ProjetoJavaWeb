@@ -10,6 +10,7 @@ import java.util.List;
 
 import classes.Cliente;
 
+
 public class ClienteDao {
 	public static Cliente getClienteById(int id) {
 		Cliente cliente = null;
@@ -25,7 +26,7 @@ public class ClienteDao {
 				cliente.setEmail(rs.getString("email"));
 				cliente.setSenha(rs.getString("senha"));
 				cliente.setEstado(rs.getString("estado"));
-
+				
 			}
 		} catch (Exception erro) {
 			System.out.println(erro);
@@ -33,12 +34,12 @@ public class ClienteDao {
 		return cliente;
 	}
 
-	public static int editarcliente(Cliente cliente) {
+	public static int editarCliente(Cliente cliente) {
 		int status = 0;
 		try {
 			Connection con = getConnection();
 			PreparedStatement ps = (PreparedStatement) con
-					.prepareStatement("UPDATE cliente SET nome=?, email=?  WHERE id=?");
+					.prepareStatement("UPDATE cliente SET nome=?, email=?, acesso=?  WHERE id=?");
 			ps.setString(1, cliente.getNome());
 			ps.setString(2, cliente.getEmail());
 			ps.setInt(4, cliente.getId());
@@ -57,12 +58,15 @@ public class ClienteDao {
 					.prepareStatement("SELECT * FROM cliente ORDER BY id LIMIT " + (inicio - 1) + " ," + total);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
+
 				Cliente cliente = new Cliente();
 				cliente.setId(rs.getInt("id"));
 				cliente.setNome(rs.getString("nome"));
 				cliente.setEmail(rs.getString("email"));
 				cliente.setSenha(rs.getString("senha"));
 				cliente.setEstado(rs.getString("estado"));
+				cliente.setAcesso(rs.getString("acesso"));
+				cliente.setCodigo_validador(rs.getString("codigo_validador"));
 				cliente.setData_de_criacao(rs.getTimestamp("data_de_criacao"));
 				cliente.setData_da_ultima_modificacao(rs.getTimestamp("data_da_ultima_modificacao"));
 				list.add(cliente);
@@ -107,24 +111,38 @@ public class ClienteDao {
 		return contagem;
 	}
 
-	public static int[] getRelatorioclientes() {
+	public static int[] getRelatorioClientes() {
 
-		int[] valores = { 10, 20, 30, 40 };
+		int[] valores = { 0, 0, 0, 0 };
 
 		try {
 			Connection con = getConnection();
 			PreparedStatement ps = (PreparedStatement) con
-					.prepareStatement("SELECT count(*) FROM cliente where estado = 'ativo'");
+					.prepareStatement("SELECT count(*) AS ativo FROM cliente where estado = 'Ativo'");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				valores[0] = rs.getInt("Ativo");
+				valores[0] = rs.getInt("ativo");
 			}
 
 			ps = (PreparedStatement) con
-					.prepareStatement("SELECT count(*) AS comum FROM cliente where estado = 'inativo'");
+					.prepareStatement("SELECT count(*) AS inativo FROM cliente where estado = 'Inativo'");
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				valores[1] = rs.getInt("Inativo");
+				valores[1] = rs.getInt("inativo");
+			}
+
+			ps = (PreparedStatement) con
+					.prepareStatement("SELECT count(*) AS suspenso FROM cliente where estado = 'Suspenso'");
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				valores[2] = rs.getInt("suspenso");
+			}
+
+			ps = (PreparedStatement) con
+					.prepareStatement("SELECT count(*) AS banido FROM cliente where estado = 'Banido'");
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				valores[3] = rs.getInt("banido");
 			}
 
 		} catch (Exception erro) {
@@ -185,7 +203,7 @@ public class ClienteDao {
 				if (rs.getString("estado").equals("ativo")) {
 					if (rs.getString("senha").equals(senha)) {
 						cl.setId(rs.getInt("id"));
-						cl.setNome(rs.getString("nome"));	
+						cl.setNome(rs.getString("nome"));
 						cl.setEmail(rs.getString("email"));
 						cl.setSenha(rs.getString("senha"));
 						cl.setAcesso(rs.getString("acesso"));
@@ -209,5 +227,4 @@ public class ClienteDao {
 		return cl;
 	}
 
-	
 }

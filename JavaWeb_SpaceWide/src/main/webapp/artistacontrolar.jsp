@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="dao.Dao, dao.ArtistaDao, classes.Artista, java.util.*"%>
+<%@ page import="dao.Dao, dao.ArtistaDao, classes.Artista, java.util.*"  pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org"
@@ -30,8 +30,8 @@
                 String pag = request.getParameter("pag");
                 int id = Integer.parseInt(pag);
                 
-                //Quantidade de Registros da Página
-                int total = 3;
+                //Quantidade de Registros da PÃ¡gina
+                int total = 5;
                 
                 if(id!=1){
                     id = id -1;
@@ -53,9 +53,11 @@
             %>
         
             <h4>Lista de Artistas</h4>
-            <table style="margin-bottom:10px;">
-            <tr><th>Id</th><th>Nome</th><th>Nome artístico</th><th>Email</th><th>Senha</th><th colspan="">Estado</th><th colspan="">Data de Criação</th><th colspan="">Data de ultima modificação</th>
-            <th colspan="2">Ações</th></tr>
+            <div class="divider"></div>
+            <div class="section">
+            <table class="responsive-table">
+            <tr><th>Id</th><th>Nome</th><th>Nome artÃ­stico</th><th>Email</th><th>Senha</th><th colspan="">Estado</th><th colspan="">Data de CriaÃ§Ã£o</th><th colspan="">Data de ultima modificaÃ§Ã£o</th>
+            <th colspan="2">AÃ§Ãµes</th></tr>
                 <c:forEach items="${list}" var="artista">
                 <tr>
                     <td>${artista.getId()}</td>
@@ -67,11 +69,12 @@
                     <td>${artista.getData_de_criacao()}</td>
                     <td>${artista.getData_da_ultima_modificacao()}
                     <td><a href="editar/Artistabloquear.jsp?id=${artista.getId()}&estado=${artista.getEstado()}"> <i class="material-icons middle">lock</i></a></td>
-                    <td><a href="editar/Artistaexcluir.jsp?id=${artista.getId()}"><i class="material-icons middle">delete</i></a></td>            
-                    
+                    <td><a href="editar/Artistaexcluir.jsp?id=${artista.getId()}" onclick="return confirm('Deseja deletar?');"><i class="material-icons middle ">delete</i></a></td>            
+                    <td><a href="editar/Artistaeditarform.jsp?id=${artista.getId()}"> <i class="material-icons middle">edit</i></a></td>
                 </tr>	
                 </c:forEach>
             </table>
+            </div>
                  
                      <ul class="pagination">
                     <% for(i=1; i <= contagem; i++) {%>
@@ -84,7 +87,7 @@
                     <% } %>  
                      </ul> 
                  
-                </div>   
+                   
             
           
           
@@ -92,5 +95,6 @@
     
         <%@include file="rodape.jsp"%>
     </div>
+    	<script type="text/javascript" src="js/materialize.min.js"></script>
     </body>
 </html>
